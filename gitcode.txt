@@ -1,0 +1,2 @@
+ git remote add origin git@github.com:crazytunnu/webdev-MERN-.git
+ git push origin master
