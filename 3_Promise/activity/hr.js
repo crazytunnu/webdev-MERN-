@@ -1,4 +1,4 @@
-const { fstat } = require("node:fs");
+let fs=require("fs");
 let puppeteer=require("puppeteer");
 let browersopen=puppeteer.launch({headless:false, args:["--start-maximized"]});
 let gtab; ////https://www.hackerrank.com/auth/login?h_l=body_middle_left_button&h_r=login
