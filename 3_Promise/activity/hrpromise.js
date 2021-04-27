@@ -1,9 +1,25 @@
 let fs=require("fs");
 let puppeteer=require("puppeteer");
-let link="https://www.hackerrank.com/auth/login?h_l=body_middle_left_button&h_r=login";
-let gtab;
-// node hrpromise
-function waitAndClickk(selector) {
+let browersopen=puppeteer.launch({headless:false, args:["--start-maximized"]});
+let gtab; 
+let {codes}=require("./solution");
+////https://www.hackerrank.com/auth/login?h_l=body_middle_left_button&h_r=login
+//jonenag175@sumwan.com
+// function waitandclick(selector){
+//     return new Promise(function(resolve,reject)
+//     {
+//         let wait=gtab.waitForSelector(selector,{visible:true});
+//         wait.then(function(){
+//             let click=gtab.click(selector);
+//             return click;
+//         }).then(function(){
+//             resolve();
+//         }).catch(function(){
+//             reject();
+//         })
+//     }
+// }
+function waitAndClick(selector) {
     return new Promise(function (resolve, reject) {
         let selectorWaitPromise = gtab.waitForSelector(selector,
             { visible: true });
@@ -18,41 +34,43 @@ function waitAndClickk(selector) {
             })
     })
 }
-let nbrowser=puppeteer.launch({headless:false, args:["--start-maximized"]});
-nbrowser.then(function(browser){
-    let ntab=browser.newPage();
+browersopen.then(function(brower){
+    let ntab=brower.newPage();
     return ntab;
-}).then(function(ntab){
-    gtab=ntab;
-    let hrank=gtab.goto(link);
+}).then(function(tab){
+    gtab=tab;
+    let hrank=gtab.goto("https://www.hackerrank.com/auth/login?h_l=body_middle_left_button&h_r=login");
     return hrank;
 }).then(function(){
-    let username=gtab.type("[name='username']",'jonenag175@sumwan.com',{delay:10})
+    let username=gtab.type("[name='username']",'jonenag175@sumwan.com',{delay:10});
     return username;
+
 }).then(function(){
-    let password=gtab.type("[name='password']",'jonenag175@sumwan.com',{delay:10})
+    let password=gtab.type("[name='password']",'jonenag175@sumwan.com',{delay:10});
     return password;
 }).then(function(){
-    let login=gtab.click("button[data-analytics='LoginPassword']")
-    return login
-}).then(function () {
-    let clickIPKIt = waitandclick
-        (".card-content h3[title='Interview Preparation Kit']");
-    return clickIPKIt;
-}).then(function () {
-    let warmupClick =
-    waitAndClick("a[data-attr1='warmup']");
-    return warmupClick;
+    let presslogin=gtab.click("button[data-analytics='LoginPassword']");
+    let returnlogin=Promise.all([presslogin, gtab.waitForNavigation({waitUntil:"networkidle0"})]);
+    return returnlogin;
+}).then(function(){
+    let pkit=waitAndClick(".card-content h3[title='Interview Preparation Kit']");
+    return pkit;
+}).then(function(){
+    let warmup=waitAndClick("[data-attr1='warmup']");
+    return warmup;
+}).then(function(){
+    let url = gtab.url();
+        let questionObj = codes[0];
+        que
 })
+function questionSolver(link,que,sol)
+{
+    return new Promise(function(resolve,reject){
+        // goto page
+        // questionname-appear-click
+        // read-copy-paste
+        // submit
 
-function waitAndClick(selector){
-    return new Promise(function(resolve, reject){
-        let wwait=gtab.waitForSelector(selector,{visible:true});
-        wwait.then(function(){
-            cclick=gtab.click(selector);
-            return cclick;
-        }).then(function(){
-            resolve();
-        })
+        let gotoque=gtab.click()
     })
 }
