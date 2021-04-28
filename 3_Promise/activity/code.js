@@ -50,7 +50,7 @@ browersopen.then(function(brower){
     return password;
 }).then(function(){
     let presslogin=gtab.click("button[data-analytics='LoginPassword']");
-    let returnlogin=Promise.all([presslogin, gtab.waitForNavigation({waitUntil:"networkidle0"})]);
+    let returnlogin=Promise.all([presslogin, gtab.waitForNavigation({waitUntil:"networkidle0"})]);//this line cost me 2 hours
     return returnlogin;
 }).then(function(){
     let pkit=waitAndClick(".card-content h3[title='Interview Preparation Kit']");
@@ -59,18 +59,52 @@ browersopen.then(function(brower){
     let warmup=waitAndClick("[data-attr1='warmup']");
     return warmup;
 }).then(function(){
-    let url = gtab.url();
-        let questionObj = codes[0];
-        que
+    return gtab.url();
+}).then(function(link){
+    let obj=codes[0];
+    questionSolver(link,"Counting Valleys",obj.soln);
 })
 function questionSolver(link,que,sol)
 {
     return new Promise(function(resolve,reject){
         // goto page
+        let gotopage=gtab.goto(link);
+        gotopage
+        .then(function (){
+            function runonbrowser(question){
+                let docall=document.querySelectorAll("h4");
+                let Ques=[];
+                for(let i=0;i<docall.length;i++)
+                {
+                    let name=docall[i].innerText.split("\n")[0];
+                    Ques.push(name);
+                }
+                let idx=Ques.indexOf(question);
+                docall[idx].click();
+            }
+            let clickonQ=gtab.evaluate(runonbrowser,que);
+            return clickonQ;
+        }).then(function(){
+            let shandler=settinghandler();
+            return shandler;
+        }).then(function(){
+            resolve();
+        })
         // questionname-appear-click
         // read-copy-paste
         // submit
-
-        let gotoque=gtab.click()
+    })
+}
+function settinghandler()//disable and click again on settings to remove the popup
+{
+    return new Promise(function(resolev,reject){
+        let wandc=waitAndClick("button[aria-label='Editor Settings']")
+        wandc.then(function(){
+            return waitAndClick("button[aria-label='Disable Autocomplete']");
+        }).then(function(){
+            return waitAndClick("button[aria-label='Editor Settings']");
+        }).then(function(){
+            resolve();
+        })
     })
 }
