@@ -61,8 +61,18 @@ browersopen.then(function(brower){
 }).then(function(){
     return gtab.url();
 }).then(function(link){
-    let obj=codes[0];
-    questionSolver(link,"Counting Valleys",obj.soln);
+    // function recursion(link,i)
+    // {
+    //     if(i>3) return;
+    //     let obj=codes[i];
+    //     let temp= questionSolver(link,obj.qName,obj.soln);
+    //     temp.then(function(){
+    //         recursion(link,i+1);
+    //     })
+    // }
+    // recursion(link,0);
+    let obj=codes[1];
+    questionSolver(link,obj.qName,obj.soln);
 })
 function questionSolver(link,que,sol)
 {
@@ -85,9 +95,30 @@ function questionSolver(link,que,sol)
             let clickonQ=gtab.evaluate(runonbrowser,que);
             return clickonQ;
         }).then(function(){
-            let shandler=settinghandler();
-            return shandler;
+            return waitAndClick(".checkBoxWrapper") //clicking on search so that we can type our solution here
         }).then(function(){
+            return gtab.keyboard.type(sol);
+        }).then(function(){
+            return gtab.keyboard.down("Control");
+        }).then(function(){
+            return gtab.keyboard.press("A");
+        }).then(function(){
+            return gtab.keyboard.press("X");
+        }).then(function(){
+            return gtab.keyboard.up("Control");
+        }).then(function(){
+                let clickoneditor =gtab.click(".monaco-editor.no-user-select.vs");
+                return clickoneditor;
+            }).then(function(){
+                return gtab.keyboard.down('Control');
+            }).then(function(){
+                return gtab.keyboard.press("A");
+            }).then(function(){
+                return gtab.keyboard.press("V");
+            }).then(function(){
+                return gtab.click(".ui-btn.ui-btn-normal.ui-btn-primary.pull-right.hr-monaco-submit.ui-btn-styled");
+            })
+            .then(function(){
             resolve();
         })
         // questionname-appear-click
@@ -95,9 +126,31 @@ function questionSolver(link,que,sol)
         // submit
     })
 }
+function settingHandlerr() {
+    return new Promise(function (resolve, reject) {
+
+        // wait click
+        let settingClickPromise = waitAndClick("button[aria-label='Editor Settings']");
+        settingClickPromise
+            .then(function () {
+                let disableButtonClickPromise = waitAndClick("button[aria-label='Disable Autocomplete']");
+                return disableButtonClickPromise;
+            }).then(function () {
+                // click on setting button
+                let settingIsClickedpromise = gtab.click("button[aria-label='Editor Settings']");
+                return settingIsClickedpromise;
+            }).then(function () {
+                resolve();
+            }).catch(function () {
+                resolve();
+            })
+        // autocomplete -> wait ,click
+
+    })
+}
 function settinghandler()//disable and click again on settings to remove the popup
 {
-    return new Promise(function(resolev,reject){
+    return new Promise(function(resolve,reject){
         let wandc=waitAndClick("button[aria-label='Editor Settings']")
         wandc.then(function(){
             return waitAndClick("button[aria-label='Disable Autocomplete']");
@@ -107,4 +160,22 @@ function settinghandler()//disable and click again on settings to remove the pop
             resolve();
         })
     })
-}
+} 
+
+// .then(function(){
+//     let shandler=settinghandler();
+//     return shandler;
+// }).then(function(){
+//     let clickoneditor =gtab.click(".monaco-editor.no-user-select.vs");
+//     return clickoneditor;
+// }).then(function(){
+//     return gtab.keyboard.down('Control');
+// }).then(function(){
+//     return gtab.keyboard.press("A");
+// }).then(function(){
+//     return gtab.keyboard.up("Control");
+// }).then(function(){
+//     return gtab.keyboard.press("Backspace");
+// }).then(function(){
+//     return gtab.keyboard.type(sol);
+// })
