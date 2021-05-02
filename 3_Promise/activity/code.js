@@ -61,18 +61,27 @@ browersopen.then(function(brower){
 }).then(function(){
     return gtab.url();
 }).then(function(link){
-    // function recursion(link,i)
+    
+    // let obj=codes[0];
+    // let aa=questionSolver(link,obj.qName,obj.soln);
+    // for(let i=1;i<codes.length;i++)
     // {
-    //     if(i>3) return;
-    //     let obj=codes[i];
-    //     let temp= questionSolver(link,obj.qName,obj.soln);
-    //     temp.then(function(){
-    //         recursion(link,i+1);
+    //     aa=aa.then(function(){
+    //         return questionSolver(link,codes[i].qName,codes[i].soln);
+            
     //     })
     // }
-    // recursion(link,0);
-    let obj=codes[1];
-    questionSolver(link,obj.qName,obj.soln);
+    // return aa;
+    async function cb(){
+        let data=await questionSolver(link,codes[2].qName,codes[2].soln);
+        // for(let i=0;i<codes.length;i++)
+        // {
+        //     let data=await questionSolver(link,codes[i].qName,codes[i].soln);
+            
+        // }
+    }
+    cb();
+    console.log("All Questions Solved");
 })
 function questionSolver(link,que,sol)
 {
