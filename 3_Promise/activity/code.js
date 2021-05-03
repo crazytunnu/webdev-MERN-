@@ -73,12 +73,11 @@ browersopen.then(function(brower){
     // }
     // return aa;
     async function cb(){
-        let data=await questionSolver(link,codes[2].qName,codes[2].soln);
-        // for(let i=0;i<codes.length;i++)
-        // {
-        //     let data=await questionSolver(link,codes[i].qName,codes[i].soln);
+        for(let i=0;i<codes.length;i++)
+        {
+            let data=await questionSolver(link,codes[i].qName,codes[i].soln);
             
-        // }
+        }
     }
     cb();
     console.log("All Questions Solved");
@@ -106,7 +105,7 @@ function questionSolver(link,que,sol)
         }).then(function(){
             return waitAndClick(".checkBoxWrapper") //clicking on search so that we can type our solution here
         }).then(function(){
-            return gtab.keyboard.type(sol);
+            return gtab.type(".custominput",sol);
         }).then(function(){
             return gtab.keyboard.down("Control");
         }).then(function(){
