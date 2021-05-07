@@ -12,7 +12,14 @@ let puppeteer=require("puppeteer");
     let ntab=await browser.newPage();
     await ntab.goto("https://www.youtube.com/playlist?list=PLRBp0Fe2GpgnIh0AiYKh7o7HnYAej-5ph")
     let arr=await ntab.evaluate(rob);
-    console.log(arr);
+    let count=Number(arr[0].split(" ")[0]);
+    let tview=Number(arr[1].split(" ")[0]);
+    console.log(count,arr[1]);
+    let vcount=await scroll(ntab,"#video-title");
+    while(count-15>vcount)
+    {
+        vcount=await scroll(ntab,"#video-title");
+    }
     let arr2=await ntab.evaluate(nameandlength,"#video-title","span.style-scope.ytd-thumbnail-overlay-time-status-renderer");
     console.table(arr2);
 })();
@@ -36,4 +43,14 @@ function nameandlength(name,duration){
         arr.push({Title,Duration});
     }
     return arr;
+}
+function scroll(ntab,css)
+{
+    function sob(css)
+    {
+        window.scrollBy(0,window.innerHeight);
+        let count=document.querySelectorAll(css);
+        return count.length;
+    }
+    return ntab.evaluate(sob,css);
 }
