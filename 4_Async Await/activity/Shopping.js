@@ -7,10 +7,10 @@ let gtab;
     let browser=await puppeteer.launch({headless:false,args:["--start-maximized"]});
     let amazon=await getAmazon(links[1],browser,search);
     let flipkart=await getFlipkart(links[0],browser,search);
-    // let snapdeal=await getSnapdeal(links[2],browser,search);
+    let snapdeal=await getSnapdeal(links[2],browser,search);
     console.table(amazon)
     console.table(flipkart);
-    // console.table(snapdeal);
+    console.table(snapdeal);
     console.log("Code Completed");
 })();
 async function getAmazon(link,browser,search)
