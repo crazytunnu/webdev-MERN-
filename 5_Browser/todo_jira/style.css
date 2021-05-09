@@ -1,0 +1,37 @@
+body{
+margin: 0;
+background-color: coral;
+}
+.input-container{
+    height: 15vh;
+    background-color: lightcoral;
+}
+.task-container{
+    height: 85vh;
+    background-color: coral;
+}
+.input-box{
+   margin-left: 25vw;
+    height:80%;
+    font-family: 'Dancing Script', cursive;
+    width:50%;
+    font-size : 2rem;
+    color:red;
+}
+.instruction{
+    text-align: center;
+    color: rgb(68, 3, 3);
+    font-size:1.5rem;
+}
+ul{
+    margin-left: 25vw;
+    margin-top:10%;
+    width:50%;
+}
+li{
+    font-size:1.8rem;
+    font-family: 'Dancing Script', cursive;
+    list-style: none;
+    color:rgb(20, 173, 220);
+    text-align: center;
+}
