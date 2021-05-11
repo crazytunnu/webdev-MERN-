@@ -72,7 +72,6 @@ body{
     display: flex;
     position: relative;
 }
-
 .modal{
     display: flex;
     flex-direction: row;
@@ -100,16 +99,16 @@ body{
 .colorV{
     background-color:rgb(83, 97, 86);
     width: 25%;
-    
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    
+    padding: 1.7rem 1.2rem;
     
 }
 .filter{
-   
+    
     width: 90%;
     height: 18.5%;
 }

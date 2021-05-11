@@ -3,6 +3,7 @@ let color2=document.querySelector(".second")
 let color3=document.querySelector(".third")
 let color4=document.querySelector(".fourth")
 let outer=document.querySelector(".outer2")
+let add=document.querySelector(".fas.fa-plus");
 color1.addEventListener("click",function(data){
     outer.style.backgroundColor="Red";
 })
@@ -15,13 +16,18 @@ color3.addEventListener("click",function(data){
 color4.addEventListener("click",function(data){
     outer.style.backgroundColor="YELLOW";
 })
-let add=document.querySelector(".fas.fa-plus");
 add.addEventListener("click",function(data){
-    // let nb=document.createElement("div");
-    // nb.setAttribute("class","todo-box");
-    // nb.style.background="Red";
-    // nb.style.width="25%";
-    // nb.style.height="40%";
-    // outer.appendChild(nb);
+    let nb=document.createElement("div");
+    nb.setAttribute("class","modal");
+    nb.innerHTML=`<div class="input-box">
+    <textarea class="text-box">Enter your text here</textarea>
+    </div>
+    <div class="colorV">
+    <div class="filter first"></div>
+    <div class="filter second"></div>
+    <div class="filter third"></div>
+    <div class="filter fourth"></div>
+</div>`;
+    outer.appendChild(nb);
 })
 
