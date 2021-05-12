@@ -71,6 +71,7 @@ tb.addEventListener("click",function(data){
     nb.innerHTML=`<div class="td-head"></div>
     <div class="tdEID">#ExampleID</div>`;
     outer2.appendChild(nb);
+    
     let tex=document.querySelector("td-text");
     let xx=document.querySelector(".text-box");
     let parent=document.querySelectorAll(".todo");
@@ -82,6 +83,21 @@ tb.addEventListener("click",function(data){
     parent.appendChild(child);
     let la=document.querySelectorAll(".td-head");
     la=la[la.length-1];
+    //head color change
+    la.addEventListener("click",function(data){
+        let col=la.style.backgroundColor;
+        if(col=="red")
+        la.style.backgroundColor="blue";
+        else if(col=="blue")
+        la.style.backgroundColor="green";
+        else if(col=="green")
+        la.style.backgroundColor="yellow";
+        else if(col=="yellow")
+        la.style.backgroundColor="red";
+
+        
+
+    });
     la.style.backgroundColor=sc;
     nbg.remove();
         }
@@ -96,5 +112,9 @@ function removeclass()
         filter[i].classList.remove("border");
     }
 }
-
+let del=document.querySelector(".fa-times");
+del.addEventListener("click",function(data){
+    let del=document.querySelector(".todo");
+    del.remove();
+})
 
