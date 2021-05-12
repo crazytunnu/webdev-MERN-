@@ -66,12 +66,7 @@ body{
 
 
 
-.outer2{
-    height:90vh;
-    background-color: white;
-    display: flex;
-    position: relative;
-}
+
 .modal{
     display: flex;
     flex-direction: row;
@@ -80,7 +75,8 @@ body{
     background-color: black;
     position: absolute;
     left: 33%;
-    top: 10%;
+    top: 15%;
+    box-shadow: 0 1rem 5rem black;
 }
 .input-box{
     height: 100%;
@@ -111,4 +107,41 @@ body{
     
     width: 90%;
     height: 18.5%;
+}
+.outer2{
+    padding: 3%;
+    height:90vh;
+    background-color: white;
+    display: flex;
+}
+.todo{
+    margin:10px;
+
+    height: 26%;
+    width: 19%;
+    background-color:pink;
+
+}
+.td-head{
+    width: 100%;
+    height: 7%;
+}
+.tdEID{
+    width: 100%;
+    height: 7%;
+    display: flex;
+    justify-content: 10%;
+    font-size: 1.1rem;
+    font:bolder ;
+}
+.td-text{
+    width: 100%;
+    height: 86%;
+    padding: 10%;
+    text-align: center;
+    font-size: 1.25rem;
+}
+.border{
+    border: .3rem solid black
+    
 }
