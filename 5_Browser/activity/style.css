@@ -113,12 +113,17 @@ body{
     height:90vh;
     background-color: rgba(202, 200, 200, 0.707);
     display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+/* gap:2rem; */
+align-items: center;
+padding: 1.7rem 1.2rem;
 }
 .todo{
     margin:10px;
-
-    height: 26%;
-    width: 19%;
+    height: 100px;
+    width: 200px;
+    overflow: auto;
     background-color:white;
 
 }
@@ -144,4 +149,7 @@ body{
 .border{
     border: .3rem solid black
     
+}
+.active{
+    background-color:rgb(109, 105, 105);
 }

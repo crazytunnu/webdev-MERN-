@@ -6,7 +6,7 @@ let outer=document.body;
 let outer2=document.querySelector(".outer2")
 let add=document.querySelector(".fas.fa-plus");
 
-let sc;
+
 
 color1.addEventListener("click",function(data){
     outer2.style.backgroundColor="Red";
@@ -20,7 +20,10 @@ color3.addEventListener("click",function(data){
 color4.addEventListener("click",function(data){
     outer2.style.backgroundColor="YELLOW";
 })
+let mcbool=false;
 add.addEventListener("click",function(data){
+    if(mcbool==true) return;
+    mcbool=true;
     let nbg=document.createElement("div");
     nbg.setAttribute("class","modal");
     nbg.innerHTML=`<div class="input-box">
@@ -38,6 +41,9 @@ add.addEventListener("click",function(data){
 let co2=document.querySelector(".filter.second")
 let co3=document.querySelector(".filter.third")
 let co4=document.querySelector(".filter.fourth")
+let sc="red";
+co1.classList.add("border");
+
 co1.addEventListener("click",function(data){
     removeclass();
     co1.classList.add("border");
@@ -70,14 +76,26 @@ tb.addEventListener("click",function(data){
     nb.setAttribute("class","todo");
     nb.innerHTML=`<div class="td-head"></div>
     <div class="tdEID">#ExampleID</div>`;
+    nb.addEventListener("click",function(data)
+    {
+        if(gdm)
+        {
+            nb.remove();
+            gdm=false;
+            let yy=document.querySelector(".fa-times")
+            let xx=yy.parentNode;
+            console.log(xx);
+             xx.classList.remove("active");
+        }
+    })
     outer2.appendChild(nb);
-    
     let tex=document.querySelector("td-text");
     let xx=document.querySelector(".text-box");
     let parent=document.querySelectorAll(".todo");
     parent=parent[parent.length-1];
     let child=document.createElement("div");
     child.setAttribute("class","td-text");
+    child.setAttribute("contenteditable","true");
     child.innerText=xx.value;
     xx.value="";
     parent.appendChild(child);
@@ -99,6 +117,7 @@ tb.addEventListener("click",function(data){
 
     });
     la.style.backgroundColor=sc;
+    mcbool=false;
     nbg.remove();
         }
     })
@@ -112,9 +131,26 @@ function removeclass()
         filter[i].classList.remove("border");
     }
 }
+let gdm=false;
 let del=document.querySelector(".fa-times");
 del.addEventListener("click",function(data){
-    let del=document.querySelector(".todo");
-    del.remove();
+    gdm=!gdm;
+    let parentt=del.parentNode;
+    if(gdm)
+    {
+    parentt.classList.add("active");
+    }
+    else{
+        parentt.classList.remove("active");
+    }
+    
 })
-
+function delme(data)
+{
+    let nb=data.currentTarget;
+    if(gdm)
+        {
+            nb.remove();
+            gdm=false;
+        }
+}
