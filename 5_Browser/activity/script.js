@@ -72,10 +72,12 @@ tb.addEventListener("click",function(data){
     tb.addEventListener("keydown",function(data){
         if(data.key=="Enter")
         {
+            let uifn = new ShortUniqueId();
+    let uid = uifn();
         let nb=document.createElement("div");
     nb.setAttribute("class","todo");
     nb.innerHTML=`<div class="td-head"></div>
-    <div class="tdEID">#ExampleID</div>`;
+    <div class="tdEID">#${uid}</div>`;
     nb.addEventListener("click",function(data)
     {
         if(gdm)
