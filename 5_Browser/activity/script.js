@@ -5,8 +5,55 @@ let color4=document.querySelector(".fourth")
 let outer=document.body;
 let outer2=document.querySelector(".outer2")
 let add=document.querySelector(".fas.fa-plus");
-
-
+let arr=[];
+if(localStorage.getItem("items"))
+{
+      arr=JSON.parse(localStorage.getItem("items"));
+    for(let i=0;i<arr.length;i++)
+    {
+        let obj=arr[i];
+        let id=obj.id;
+        let ky=obj.ky;
+        let col=obj.col;
+        let nb=document.createElement("div")
+        nb.setAttribute("class","todo");
+        nb.innerHTML=`<div class="td-head" style="background-color:${col};"></div>
+        <div class="tdEID">#${id}</div>`;
+        nb.addEventListener("click",function(data)
+        {
+        if(gdm)
+            {
+                removeFromMemory(id);
+            nb.remove();
+            gdm=false;
+            let yy=document.querySelector(".fa-times")
+            let xx=yy.parentNode;
+            //
+             xx.classList.remove("active");
+            }
+        })
+        let child=document.createElement("div");
+        child.setAttribute("class","td-text");
+        child.setAttribute("contenteditable","true");
+        child.innerText=obj.ky;
+        nb.appendChild(child);
+        outer2.appendChild(nb);
+        let la=document.querySelectorAll(".td-head");
+        la=la[la.length-1];
+        //head color change
+        la.addEventListener("click",function(data){
+        let col=la.style.backgroundColor;
+        if(col=="red")
+        la.style.backgroundColor="blue";
+        else if(col=="blue")
+        la.style.backgroundColor="green";
+        else if(col=="green")
+        la.style.backgroundColor="yellow";
+        else if(col=="yellow")
+        la.style.backgroundColor="red";
+         });
+    }
+}
 
 color1.addEventListener("click",function(data){
     outer2.style.backgroundColor="Red";
@@ -78,18 +125,21 @@ tb.addEventListener("click",function(data){
     nb.setAttribute("class","todo");
     nb.innerHTML=`<div class="td-head"></div>
     <div class="tdEID">#${uid}</div>`;
+    
+
     nb.addEventListener("click",function(data)
     {
         if(gdm)
         {
-            nb.remove();
+           removeFromMemory(uid)
+           nb.remove();
             gdm=false;
             let yy=document.querySelector(".fa-times")
             let xx=yy.parentNode;
-            console.log(xx);
              xx.classList.remove("active");
         }
     })
+    
     outer2.appendChild(nb);
     let tex=document.querySelector("td-text");
     let xx=document.querySelector(".text-box");
@@ -119,6 +169,14 @@ tb.addEventListener("click",function(data){
 
     });
     la.style.backgroundColor=sc;
+    let obj=
+    {id:uid,
+     ky:child.innerText,
+     col:sc
+    };
+    arr.push(obj);
+    let strArr=JSON.stringify(arr);
+    localStorage.setItem("items",strArr);
     mcbool=false;
     nbg.remove();
         }
@@ -155,4 +213,23 @@ function delme(data)
             nb.remove();
             gdm=false;
         }
+}
+function removeFromMemory(id)
+{
+    // console.log(id);
+    let narr=[];
+    arr=JSON.parse(localStorage.getItem("items"));
+    for(let i=0;i<arr.length;i++)
+    {
+        
+        let cid=arr[i].id;
+        if(cid!=id)
+        {
+            narr.push(arr[i]);
+        }
+        console.log(cid)
+    }
+    arr=narr;
+    let strArr=JSON.stringify(arr);
+    localStorage.setItem("items",strArr);
 }
