@@ -1,0 +1,50 @@
+body{
+    margin:0;
+}
+*{
+    box-sizing: border-box;
+}
+.top-left-block{
+    width: 25px;
+    height: 30px;
+    background-color: gray;
+}
+.top-row{
+    height: 30px;
+    background-color: lightgreen;
+    display: flex;
+    position: absolute;
+    left: 25px;
+    top: 0px;
+}
+.row{
+    display: flex;
+
+}
+.col{
+    min-width: 60px;
+    height: 30px;
+    border: 1px solid;
+    text-align: center;
+}
+.left-col{
+    
+    width: 25px;
+    background-color: lightgreen;
+    
+}
+.left-col-box{
+    height: 30px;
+    
+    text-align: center;
+    border: 1px solid;
+}
+.grid_container{
+    background-color: white;
+    position: relative;
+}
+.grid{
+    position: absolute;
+    top: 30px;
+    left:25px;
+}

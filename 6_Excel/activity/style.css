@@ -13,8 +13,12 @@ body{
     height: 30px;
     background-color:rgb(97, 156, 167);
 }
-.grid{
+.grid_container{
+    width: 100vh;
     height: calc(100vh - (80px + 30px + 40px ) );
+    overflow: auto;
+    background-color: white;
+    position: relative;
 }
 .sheets{
     height: 30px;
@@ -49,4 +53,45 @@ body{
 }
 .active-sheet{
     background-color: white;
+}
+.top-left-block{
+    width: 25px;
+    height: 30px;
+    background-color: gray;
+}
+.top-row{
+    height: 30px;
+    background-color: lightgreen;
+    display: flex;
+    position: absolute;
+    left: 25px;
+    top: 0px;
+}
+.row{
+    display: flex;
+
+}
+.col{
+    min-width: 60px;
+    height: 30px;
+    border: 1px solid;
+    text-align: center;
+}
+.left-col{
+    
+    width: 25px;
+    background-color: lightgreen;
+    
+}
+.left-col-box{
+    height: 30px;
+    
+    text-align: center;
+    border: 1px solid;
+}
+
+.grid{
+    position: absolute;
+    top: 30px;
+    left:25px;
 }
