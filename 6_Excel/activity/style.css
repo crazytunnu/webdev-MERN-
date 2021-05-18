@@ -27,7 +27,7 @@ body{
     
 }
 .add-sheet_container{
-    width: 30px;
+    min-width: 30px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -36,10 +36,11 @@ body{
 }
 .fa-plus{
     font-size: 1.25rem;
-    color: lightgreen;
+    color: green;
 }
 .sheets-list{
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y:hidden ;
     display: flex;
     height: 100%;
     width: calc(100vw - 30px );
@@ -48,7 +49,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
+    min-width: 60px;
     height: 100%;
 }
 .active-sheet{
