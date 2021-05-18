@@ -1,6 +1,7 @@
 let add_sheet_container=document.querySelector(".add-sheet_container");
 let sheets_list=document.querySelector(".sheets-list");
 let firstSheet=document.querySelector(".sheet")
+let Allcells=document.querySelectorAll(".grid .col");
 firstSheet.addEventListener("click",selected_sheet)
 add_sheet_container.addEventListener("click",addSheet)
 function addSheet(e)
@@ -24,3 +25,19 @@ function selected_sheet(e)
     })
     e.currentTarget.classList.add("active-sheet");
 }
+
+
+
+
+for(let i=0;i<Allcells.length;i++)
+{
+    Allcells[i].addEventListener("click",function(e){
+        let row=Allcells[i].getAttribute("rid");
+        let col=Allcells[i].getAttribute("cid");
+        let address=row+col;
+        let adbox=document.querySelector(".address-box");
+        adbox.value=address;
+
+    })
+}
+Allcells[0].click();

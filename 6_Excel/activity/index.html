@@ -9,8 +9,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="menu-container">Menu</div>
-    <div class="formula-container">Formula</div>
+    <div class="menu-container">
+        <div class="formatting-container">
+            <div class="subgroup">
+                <select class="font-family">
+                    <option value="Arial">Arial</option>
+                    <option value="Cambria">Cambria</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="monospace">monospace</option>
+                    <option value="sans-serif">sans-serif</option>
+                    <option value="fantasy">fantasy</option>
+                    
+                </select>
+                <div class="BUI_container">
+                    <input type="button" value="B">
+                    <input type="button" value="U">
+                    <input type="button" value="I"> 
+                </div>
+            </div>
+            <div class="subgroup">
+                <select class="font-size">
+                    <option value="eight">8</option>
+                    <option value="eight">10</option>
+                    <option value="eight">12</option>
+                    <option value="eight">16</option>
+                    <option value="eight">32</option>
+                </select>
+                <div class="color-container">
+                    <input type="color" class="color">
+                    <input type="color" class="bg-color">
+                </div>
+                
+            </div>
+        </div>
+        <div class="alignment-container">
+                    <input type="button" value="L">
+                    <input type="button" value="C">
+                    <input type="button" value="R"> 
+        </div>
+    </div>
+    <div class="formula-container">
+        <input type="text" class="address-box">
+        <div class="seperator">:</div>
+        <input type="text" class="formula-box">
+    </div>
     <div class="grid_container">
         <div class="top-left-block"></div>
         <div class="top-row"></div>
@@ -32,7 +74,7 @@
         let str="";
         for(let i=0;i<100;i++)
         {
-            str+=`<div class="left-col-box">${i+1}</div>`
+            str+=`<div class="left-col-box" >${i+1}</div>`
         }
         leftcol.innerHTML=str;
         str="";
@@ -47,7 +89,7 @@
             str+=`<div class="row">`
             for(j=0;j<26;j++)
             {
-                str+=`<div class="col">${String.fromCharCode(65+j)}${i+1}</div>`
+                str+=`<div class="col" rid='${String.fromCharCode(65+j)}' cid='${i+1}' contenteditable="true"></div>`
             }
             str+="</div>"
         }
