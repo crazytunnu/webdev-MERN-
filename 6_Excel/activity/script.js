@@ -55,7 +55,7 @@ function alignFuntion(data)
     let row=xx.charAt(0);
     let col=Number(xx.slice(1));
     let box=document.querySelector(`[rid='${row}'][cid='${col}']`);
-   
+   //conn
     if(data.currentTarget.value=="L")
     {
         box.style.textAlign="left"
