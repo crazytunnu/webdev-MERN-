@@ -72,7 +72,9 @@ body{
 .alignment-container>*{
     width:20%;
 }
-
+.active-btn{
+    background-color: rgb(160, 158, 156);
+}
 
 
 

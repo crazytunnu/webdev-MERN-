@@ -22,18 +22,18 @@
                     
                 </select>
                 <div class="BUI_container">
-                    <input type="button" value="B">
-                    <input type="button" value="U">
-                    <input type="button" value="I"> 
+                    <input type="button" value="B" class="bold">
+                    <input type="button" value="U" class="underline">
+                    <input type="button" value="I" class="italic"> 
                 </div>
             </div>
             <div class="subgroup">
                 <select class="font-size">
-                    <option value="eight">8</option>
-                    <option value="eight">10</option>
-                    <option value="eight">12</option>
-                    <option value="eight">16</option>
-                    <option value="eight">32</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="16">16</option>
+                    <option value="32">32</option>
                 </select>
                 <div class="color-container">
                     <input type="color" class="color">
@@ -67,34 +67,7 @@
             <div class="sheet active-sheet" sheetIdx="0"> Sheet 1 </div>
         </div>
     </div>
-    <script defer>
-        let toprow=document.querySelector(".top-row")
-        let leftcol=document.querySelector(".left-col");
-        let grid=document.querySelector(".grid");
-        let str="";
-        for(let i=0;i<100;i++)
-        {
-            str+=`<div class="left-col-box" >${i+1}</div>`
-        }
-        leftcol.innerHTML=str;
-        str="";
-        for(let i=0;i<26;i++)
-        {
-            str+=`<div class="col">${String.fromCharCode(65+i)}</div>`
-        }
-        toprow.innerHTML=str;
-        str="";
-        for(let i=0;i<100;i++)
-        {
-            str+=`<div class="row">`
-            for(j=0;j<26;j++)
-            {
-                str+=`<div class="col" rid='${String.fromCharCode(65+j)}' cid='${i+1}' contenteditable="true"></div>`
-            }
-            str+="</div>"
-        }
-        grid.innerHTML=str;
-    </script>
+    <script src="init.js" defer></script>
     <script src="script.js" defer></script>
 </body>
 </html>
