@@ -47,11 +47,21 @@
   <script>
     //  Q Create a generic function to select all sibling of a given node. Using that function delete all siblings of red card.
     function siblingSelector(node) {
-        let cred=document.querySelector(".red");
-      let siblings=cred.siblings();
-      console.log(siblings.length);
-      
+        let cred=document.querySelector(node);
+      let siblings=cred.parentNode.children;
+      let arr=[];
+      for(let i=0;i<siblings.length;i++)
+      {
+          let cls=siblings[i].classList;
+          if(cls.length==1)
+          arr.push(siblings[i]);
+      }
+      return arr;
     }
+    let sibArr=siblingSelector(".red");
+    for(let i=0;i<sibArr.length;i++)
+    {sibArr[i].remove();
+    console.log(sibArr.length)}
   </script>
 </body>
 
