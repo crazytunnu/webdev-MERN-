@@ -168,7 +168,7 @@ body{
 
 }
 .col{
-    text-align: center;
+    text-align: left;
     min-width: 60px;
     max-width: 60px;
     min-height: 30px;
