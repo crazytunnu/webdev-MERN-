@@ -1,3 +1,5 @@
+
+
 let add_sheet_container=document.querySelector(".add-sheet_container");
 let sheets_list=document.querySelector(".sheets-list");
 let firstSheet=document.querySelector(".sheet")
@@ -9,31 +11,19 @@ let sizebox=document.querySelector(".font-size")
 let bbtn=document.querySelector(".bold")
 let ibtn=document.querySelector(".italic")
 let ubtn=document.querySelector(".underline")
+let FormulaContainer=document.querySelector(".formula-box")
+
+
+
+
+
+
 let slist=[];
 let currSheet=0;
 let updateList=[];
-
-
 firstSheet.addEventListener("click",selected_sheet)
 let sheet1=[]
 slist.push(sheet1);
-
-
-
-function createSheet()
-{
-    let row=[];
-    for(let i=0;i<100;i++)
-    {
-        let arr=[]
-        for(let j=0;j<26;j++)
-        {
-            arr.push("");
-        }
-        row.push(arr);
-    }
-    return row;
-}
 
 
 
@@ -256,7 +246,7 @@ fontbox.addEventListener("change",function(e){
 })
 
 
-//-------------------------BUI-----------------------------
+//-------------------------BUI--------------------------------------
 bbtn.addEventListener("click",function(e){
     let xx=adbox.value;
     let row=xx.charAt(0);
@@ -323,3 +313,49 @@ ubtn.addEventListener("click",function(e){
         obj.underline="underline";
     }
 })
+
+//-------------------------FormulaContainer-------------------------
+FormulaContainer.addEventListener("keydown",function(e){
+    if(e.key=="Enter"&&e.value!="")
+    {
+        let str=e.currentTarget.value;
+        let ele=str.split(" ");
+        str=makeProper(ele);
+        let ans=eval(str);
+        putEleAt(ans,adbox.value);
+    }
+})
+function makeProper(ele)
+{
+    let str="";
+    for(let i=0;i<ele.length;i++)
+    {
+        let ch=ele[i][0];
+        if(ch>='A'&&ch<='Z')
+        {
+            
+            let data=getEleAt(ele[i]);
+            str+=data;
+        }
+        else
+        {str+=ele[i];}
+        
+    }
+    return str;
+}
+function getEleAt(ele){
+    let row=ele[0];
+    let col=Number(ele.slice(1))
+    let data=document.querySelector(`.col[rid="${row}"][cid="${col}"]`)
+    data=data.innerText;
+    data=Number(data);
+    return data;
+
+}
+function putEleAt(ans,addr)
+{
+    let row=addr[0];
+    let col=Number(addr.slice(1))
+    let data=document.querySelector(`.col[rid="${row}"][cid="${col}"]`)
+    data.innerText=ans;
+}
