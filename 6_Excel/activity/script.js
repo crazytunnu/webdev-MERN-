@@ -173,8 +173,58 @@ for(let i=0;i<Allcells.length;i++)
         alignBtn[1].classList.add("active-btn");
         else
         alignBtn[2].classList.add("active-btn");
-
+        //Updating Formula container------
+        FormulaContainer.value=obj.formula;
     })
+    Allcells[i].addEventListener("blur",function(e){
+        setTimeout(function(){},10);
+        console.log(e.key);
+        let xx=adbox.value;
+        let row=xx.charAt(0);
+        row=getInt(row);
+        let col=Number(xx.slice(1));
+        col--;
+        let obj=sheetDB[col][row];
+        let children=obj.child;
+        if(children.length>0)
+        {
+           UpdateChildren(children,0)
+        }
+    })
+}
+function UpdateChildren(arr,idx)
+{
+    if(arr.length==0) return;
+
+    for(let i=0;i<arr.length;i++)
+    {
+        Update(arr[i]);
+    }
+    for(let i=0;i<arr.length;i++)
+    {
+        let obj=getEleDB(arr[i]);
+        let child=obj.child;
+        UpdateChildren(child,0);
+    }
+}
+function Update(addr)
+{
+    let obj=getEleDB(addr);
+    let formula=obj.formula;
+    let ele=formula.split(" ");
+    let str=makeProper(ele);
+    let ans=eval(str);
+    putEleAt(ans,addr);
+    updateList.push(addr);
+    
+}
+function getEleDB(xx)
+{
+    let row=xx.charAt(0);
+    let col=Number(xx.slice(1)); 
+    let rid=getInt(row);
+    let cid=col-1;
+    return sheetDB[cid][rid];
 }
 Allcells[0].click(); 
 for(let i=0;i<3;i++)
@@ -318,13 +368,44 @@ ubtn.addEventListener("click",function(e){
 FormulaContainer.addEventListener("keydown",function(e){
     if(e.key=="Enter"&&e.value!="")
     {
-        let str=e.currentTarget.value;
-        let ele=str.split(" ");
-        str=makeProper(ele);
+        let strr=e.currentTarget.value;
+        let ele=strr.split(" ");
+        let str=makeProper(ele);
         let ans=eval(str);
         putEleAt(ans,adbox.value);
+        let xx=adbox.value;
+        let row=xx.charAt(0);
+        let col=Number(xx.slice(1));
+        let cell=document.querySelector(`[rid="${row}"][cid="${col}"]`);
+        let rid=getInt(row);
+        let cid=col-1;
+        let obj=sheetDB[cid][rid]
+        obj.formula=strr;
+        let childrens=gotoAndPutMe(strr,xx);
+
     }
+
 })
+function isElement(ch)
+{
+    if(ch[0]>='A'&&ch[0]<='Z') return true;
+    else return false;
+}
+function gotoAndPutMe(formula,addr)
+{
+    let ele=formula.split(" ");
+    for(let i=0;i<ele.length;i++)
+    {
+        if(isElement(ele[i]))
+        {
+            let row=ele[i].charAt(0);
+            let col=Number(ele[i].slice(1));
+            let rid=getInt(row);
+            let cid=col-1;
+            sheetDB[cid][rid].child.push(addr);
+        }
+    }
+}
 function makeProper(ele)
 {
     let str="";

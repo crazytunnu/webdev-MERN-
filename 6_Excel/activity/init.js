@@ -39,7 +39,9 @@ for(let i=0;i<100;i++)
             underline:"none",
             fontFamily:"Arial",
             fontSize:"10",
-            halign:"left"
+            halign:"left",
+            formula:"",
+            child:[]
         }
         row.push(cell);
     }
