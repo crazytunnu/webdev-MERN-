@@ -231,3 +231,18 @@ body{
 
 
 
+
+
+
+
+
+
+.ond-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.ond-container>*{
+    font-size: 2rem;
+    color: rgb(0, 132, 255);
+}

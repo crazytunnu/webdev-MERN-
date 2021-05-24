@@ -1,4 +1,4 @@
-//Remaining formula container with held values in container,updating parent also updates childeren value,recursive code, sheetchange style restoration, 
+//scroll management, sheetchange style restoration, 
 
 let add_sheet_container=document.querySelector(".add-sheet_container");
 let sheets_list=document.querySelector(".sheets-list");
@@ -177,8 +177,6 @@ for(let i=0;i<Allcells.length;i++)
         FormulaContainer.value=obj.formula;
     })
     Allcells[i].addEventListener("blur",function(e){
-        setTimeout(function(){},10);
-        console.log(e.key);
         let xx=adbox.value;
         let row=xx.charAt(0);
         row=getInt(row);
@@ -190,6 +188,14 @@ for(let i=0;i<Allcells.length;i++)
         {
            UpdateChildren(children,0)
         }
+    })
+    Allcells[i].addEventListener("keydown",function(e){
+        let ele=e.currentTarget;
+        let rid=ele.getAttribute("cid");
+        let obj=ele.getBoundingClientRect();
+        let rowEle=document.querySelectorAll(".left-col-box")[rid-1];
+        let ht=obj.height;
+        rowEle.style.height=ht+"px";
     })
 }
 function UpdateChildren(arr,idx)
