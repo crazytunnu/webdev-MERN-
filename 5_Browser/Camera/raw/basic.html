@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .empty{
+            height: 100%;
+            width: 20%;
+        }
+        .vid{
+            height:100%;
+            width: 60%;
+        }
+        #video{
+            width: 100%;
+            height: 100%;
+        }
+        .buttons{
+            border-radius: 50%;
+            height: 100%;
+            width: 20%;
+        }
+        .record-click{
+            width: 50%;
+            height:30%;
+            display: block;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50vh;
+            margin-left: 30%;
+        }
+        .record-click>*{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="empty"></div>
+    <div class="vid">
+        <video  autoplay id="video"></video>
+    </div>
+    <div class="buttons">
+        <div class="record-click">
+            <button class="record">Record</button>
+            <button class="click">Click</button>
+        </div>
+        
+    </div>
+    <script>
+        let video=document.querySelector("video");
+        let record=document.querySelector(".record");
+        let click=document.querySelector(".click");
+        let constraints={
+            video:true,
+            audio : true
+        }
+        let buffer=[];
+        let f=false;
+        let rec;
+        navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(e){
+            video.srcObject=e;
+             rec=new MediaRecorder(e);
+            rec.addEventListener("dataavailable",function(x){
+                buffer.push(x.data);
+            })
+            rec.addEventListener("stop",function(x){
+                let a=document.createElement("a");
+                let blob=new Blob(buffer,{type:"video/mp4"});
+                let url=window.URL.createObjectURL(blob);
+                a.download="Video.mp4";
+                a.href=url;
+                a.click();
+            })
+            
+        }).catch(function(err){
+            console.log(err);
+        })
+        record.addEventListener("click",function(data){
+                if(!rec)
+                {
+                    alert("Check Permissions")
+                }
+                else{
+                    if(f)
+                {
+                    f=false
+                    record.innerHTML="Record"
+                    rec.stop();
+                }
+                else{
+                    f=true
+                    record.innerHTML="Recording"
+                    rec.start();
+                }
+                }
+            })
+    </script>
+</body>
+</html>

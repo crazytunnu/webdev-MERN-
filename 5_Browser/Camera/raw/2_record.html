@@ -31,7 +31,7 @@
                 let a=document.createElement("a");
                 let blob=new Blob(buffer,{type:"video/mp4"});
                 let url=window.URL.createObjectURL(blob);
-                a.download="check.mp4";
+                a.download="Video.mp4";
                 a.href=url;
                 a.click();
             })
