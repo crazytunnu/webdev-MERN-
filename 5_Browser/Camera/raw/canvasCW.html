@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+        }
+        body{
+
+        }
+        .colours{
+            display: flex;
+            justify-content: space-evenly;
+            width: 100vw;
+            height: 10vh;
+        }
+        .select-color{
+            width: 40px;
+            height:40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .green{
+            background-color: green;
+        }
+        #canvas{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="colours">
+        <div class="select-color red">Red</div>
+        <div class="select-color blue">Blue</div>
+        <div class="select-color green">Green</div>
+    </div>
+    <div class="bboard">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        let red=document.querySelector(".red");
+        let blue=document.querySelector(".blue");
+        let green=document.querySelector(".green");
+        let canvas=document.querySelector("#canvas"); 
+        let bboard=document.querySelector(".bboard")
+        let colours=document.querySelector(".colours")
+        canvas.height=window.innerHeight;
+        canvas.width=window.innerWidth;
+        let selected_color="red";
+        let tool=canvas.getContext("2d");
+        tool.lineWidth=10;
+        tool.strokeStyle=selected_color;
+        let cs=false;
+        red.addEventListener("click",function(){
+            selected_color="red";
+            tool.strokeStyle=selected_color;
+        })
+        blue.addEventListener("click",function(){
+            selected_color="blue";
+            tool.strokeStyle=selected_color;
+        })
+        green.addEventListener("click",function(){
+            selected_color="green";
+            
+        })
+        
+        bboard.addEventListener("mousedown",function(e){
+            let x=e.clientX+20;
+            let y=getfun(e.clientY);
+            tool.beginPath();
+            tool.moveTo(x,y);
+            cs=true;
+        })
+        bboard.addEventListener("mousemove",function(e){
+            if(cs)
+            {
+                let x=e.clientX+20;
+                let y=getfun(e.clientY);
+                tool.lineTo(x,y);
+                tool.stroke();
+            }
+        })
+        bboard.addEventListener("mouseup",function(e){
+            let x=e.clientX+20;
+            let y=getfun(e.clientY);
+            tool.lineTo(x,y);
+            tool.stroke();
+            cs=false;
+        })
+        function getfun(y)
+        {
+            let obj=colours.getBoundingClientRect();
+            return y-obj.height;
+        }
+
+        
+    </script>
+</body>
+</html>
