@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="canvas"></canvas>
+    <script>
+        let canvasx=document.querySelector(".canvas")
+        canvasx.width=window.innerWidth;
+        canvasx.height=window.innerHeight;
+        window.addEventListener("resize",function(e){
+            canvasx.width=window.innerWidth;
+            canvasx.height=window.innerHeight;
+            draw();
+        });
+        let tools=canvasx.getContext("2d");
+        function draw(){
+            tools.fillStyle="red";
+            tools.fillRect(0,0,window.innerWidth/2,window.innerHeight/2);
+            tools.fillStyle="yellow";
+            tools.fillRect(50,50,window.innerWidth/3,window.innerHeight/3);
+            tools.strokeStyle="green";
+            tools.lineWidth=10;
+            tools.strokeRect(50,50,window.innerWidth/3,window.innerHeight/3);
+        }
+        draw();
+
+    </script>
+</body>
+</html>
