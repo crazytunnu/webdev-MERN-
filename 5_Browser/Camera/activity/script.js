@@ -1,6 +1,7 @@
 let video=document.querySelector("video");
 let record=document.querySelector(".record-btn");
 let click=document.querySelector(".click");
+let capture_btn=document.querySelector(".capture")
 let constraints={
     video:true,
     audio : true
@@ -46,3 +47,17 @@ record.addEventListener("click",function(data){
         }
         }
     })
+capture_btn.addEventListener("click",function(e){
+    let canvas=document.createElement("canvas");
+    canvas.width=video.videoWidth;
+    canvas.height=video.videoHeight;
+    let tool=canvas.getContext("2d");
+    tool.drawImage(video,0,0);
+    let url=canvas.toDataURL();
+    let a=document.createElement("a");
+    a.href=url;
+    a.download="file.png";
+    a.click();
+    a.remove();
+    canvas.remove();
+})    
