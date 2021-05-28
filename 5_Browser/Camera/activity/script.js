@@ -37,18 +37,22 @@ record.addEventListener("click",function(data){
             if(f)
         {
             f=false
-            record.innerHTML="Record"
             rec.stop();
+            let red=document.querySelector(".red");
+            red.classList.remove("record-animation");
         }
         else{
             f=true
-            record.innerHTML="Recording"
             rec.start();
+            let red=document.querySelector(".red");
+            red.classList.add("record-animation");
         }
         }
     })
 capture_btn.addEventListener("click",function(e){
     let canvas=document.createElement("canvas");
+    let white=document.querySelector(".white");
+    white.classList.add("cpature-animation");
     canvas.width=video.videoWidth;
     canvas.height=video.videoHeight;
     let tool=canvas.getContext("2d");
@@ -60,4 +64,5 @@ capture_btn.addEventListener("click",function(e){
     a.click();
     a.remove();
     canvas.remove();
+    setTimeout(function(){white.classList.remove("cpature-animation");},100)
 })    
