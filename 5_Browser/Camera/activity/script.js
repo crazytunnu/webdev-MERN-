@@ -35,18 +35,18 @@ record.addEventListener("click",function(data){
         }
         else{
             if(f)
-        {
-            f=false
-            rec.stop();
-            let red=document.querySelector(".red");
-            red.classList.remove("record-animation");
-        }
-        else{
-            f=true
-            rec.start();
-            let red=document.querySelector(".red");
-            red.classList.add("record-animation");
-        }
+            {
+                f=false
+                rec.stop();
+                let red=document.querySelector(".red");
+                red.classList.remove("record-animation");
+            }
+            else{
+                f=true
+                rec.start();
+                let red=document.querySelector(".red");
+                red.classList.add("record-animation");
+            }
         }
     })
 capture_btn.addEventListener("click",function(e){
