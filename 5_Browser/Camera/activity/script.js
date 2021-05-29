@@ -40,12 +40,14 @@ record.addEventListener("click",function(data){
                 rec.stop();
                 let red=document.querySelector(".red");
                 red.classList.remove("record-animation");
+                stoptimer();
             }
             else{
                 f=true
                 rec.start();
                 let red=document.querySelector(".red");
                 red.classList.add("record-animation");
+                starttimer();
             }
         }
     })
@@ -65,4 +67,24 @@ capture_btn.addEventListener("click",function(e){
     a.remove();
     canvas.remove();
     setTimeout(function(){white.classList.remove("cpature-animation");},100)
-})    
+})   
+let timing=document.querySelector(".timing-container")
+let runtime;
+function starttimer()
+{
+   timing.classList.add("t-active");
+   let count=0;
+    runtime=setInterval(function(){
+        count++;
+        let sec=(count%60)<10?`0${count%60}`:`${count%60}`
+        let min=(count/60)<10?`0${Number.parseInt(count/60)}`:`${Number.parseInt(count/60)}`
+        let hr=(count/3600)<10?`0${Number.parseInt(count/3600)}`:`${Number.parseInt(count/3600)}`
+        timing.innerHTML=`${hr}:${min}:${sec}`;
+    },1000)
+}
+function stoptimer()
+{
+    clearInterval(runtime);
+    timing.classList.remove("t-active");
+    timing.innerHTML=`00:00:00`;
+}

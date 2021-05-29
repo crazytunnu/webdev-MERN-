@@ -108,3 +108,6 @@ body{
     color: blanchedalmond;
     display: none;
 }
+.t-active{
+    display: block;
+}
