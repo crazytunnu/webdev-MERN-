@@ -2,6 +2,28 @@ let video=document.querySelector("video");
 let record=document.querySelector(".record-btn");
 let click=document.querySelector(".click");
 let capture_btn=document.querySelector(".capture")
+let timing=document.querySelector(".timing-container");
+let allfilters=document.querySelectorAll(".filter");
+let uiFilter=document.querySelector(".ui-filter");
+let curFilter="";
+for(let i=0;i<allfilters.length;i++)
+{
+    allfilters[i].addEventListener("click",function(){
+        curFilter=allfilters[i].style.backgroundColor;
+        if(curFilter)
+        {
+            uiFilter.style.backgroundColor=curFilter;
+            uiFilter.classList.add("ui-active");
+        }
+        else
+        {
+            curFilter="";
+            uiFilter.style.backgroundColor=curFilter;
+            uiFilter.classList.remove("ui-active");
+        }
+    })
+}
+console.log(allfilters.length)
 let constraints={
     video:true,
     audio : true
@@ -59,6 +81,11 @@ capture_btn.addEventListener("click",function(e){
     canvas.height=video.videoHeight;
     let tool=canvas.getContext("2d");
     tool.drawImage(video,0,0);
+    if(curFilter)
+    {
+        tool.fillStyle=curFilter;
+        tool.fillRect(0,0,canvas.width,canvas.height)
+    }
     let url=canvas.toDataURL();
     let a=document.createElement("a");
     a.href=url;
@@ -68,7 +95,7 @@ capture_btn.addEventListener("click",function(e){
     canvas.remove();
     setTimeout(function(){white.classList.remove("cpature-animation");},100)
 })   
-let timing=document.querySelector(".timing-container")
+
 let runtime;
 function starttimer()
 {
@@ -88,3 +115,5 @@ function stoptimer()
     timing.classList.remove("t-active");
     timing.innerHTML=`00:00:00`;
 }
+
+
