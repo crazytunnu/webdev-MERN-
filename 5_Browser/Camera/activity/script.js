@@ -80,10 +80,22 @@ capture_btn.addEventListener("click",function(e){
     let canvas=document.createElement("canvas");
     let white=document.querySelector(".white");
     white.classList.add("cpature-animation");
-    canvas.width=video.videoWidth;
-    canvas.height=video.videoHeight;
     let tool=canvas.getContext("2d");
-    tool.drawImage(video,0,0);
+    if(scale==0)
+    {
+        canvas.width=video.videoWidth;
+        canvas.height=video.videoHeight;
+        tool.drawImage(video,0,0);
+    }
+    else
+    {
+        let xs=(video.videoWidth)*0.1*scale;
+        let ys=(video.videoHeight)*0.1*scale;
+        canvas.width=video.videoWidth-xs;
+        canvas.height=video.videoHeight-ys
+        tool.drawImage(video,xs,ys,canvas.width,canvas.height,0,0,canvas.width,canvas.height);
+    }
+   
     if(curFilter)
     {
         tool.fillStyle=curFilter;
