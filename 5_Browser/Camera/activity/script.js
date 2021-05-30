@@ -5,7 +5,10 @@ let capture_btn=document.querySelector(".capture")
 let timing=document.querySelector(".timing-container");
 let allfilters=document.querySelectorAll(".filter");
 let uiFilter=document.querySelector(".ui-filter");
+let plusBtn=document.querySelector(".plus")
+let minusBtn=document.querySelector(".minus")
 let curFilter="";
+let scale=0;
 for(let i=0;i<allfilters.length;i++)
 {
     allfilters[i].addEventListener("click",function(){
@@ -116,4 +119,24 @@ function stoptimer()
     timing.innerHTML=`00:00:00`;
 }
 
-
+//--------------Plus-Minus btn----------------
+plusBtn.addEventListener("click",function(){
+    if(scale<4)
+    {
+        let str="z"+scale;
+        video.classList.remove(str);
+        scale++;
+        str="z"+scale;
+        video.classList.add(str);
+    }
+})
+minusBtn.addEventListener("click",function(){
+    if(scale>0)
+    {
+        let str="z"+scale;
+        video.classList.remove(str);
+        scale--;
+        str="z"+scale;
+        video.classList.add(str);
+    }
+})
