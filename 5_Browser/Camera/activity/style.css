@@ -4,7 +4,7 @@
 }
 body{
     margin: 0px;
-   
+   overflow: hidden;
 }
 .video-container{
     width: 100vw;
@@ -124,4 +124,27 @@ body{
 }
 .ui-active{
     display: block;
+}
+
+.zoom-container{
+    width: 40px;
+    height: 70px;
+    position: fixed;
+    top: 20vh;
+    right: 9vw;
+    z-index: 5;
+    background-color: white;
+}
+.plus{
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid black;
+}
+.minus{
+    
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
 }
