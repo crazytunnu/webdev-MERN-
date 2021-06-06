@@ -1,8 +1,11 @@
-// const { strict } = require("assert/strict");
-
 let txtin=document.querySelector(".eb .txt-in")
 let levelsEn=document.querySelectorAll(".eb .level");
 let encryptBtn=document.querySelector(".eb .encrypt-btn")
+let modal=document.querySelector(".modal-container");
+let outputAns=document.querySelector(".output-ans")
+let levelNum=document.querySelector(".level-number")
+let levelDetails=document.querySelector(".level-detail")
+let 
 let level=undefined;
 txtin.addEventListener("click",function(e){
     e.currentTarget.value="";
@@ -25,7 +28,10 @@ encryptBtn.addEventListener("click",function(e)
     else
     {
         let encryptedPass=encryptFun(String(txtin.value));
-        txtin.value=encryptedPass;
+        txtin.value="******************";
+        outputAns.innerHTML=encryptedPass;
+        
+        modal.style.display="flex";
     }
 })
 function encryptFun(password)
@@ -54,6 +60,8 @@ function encryptFun(password)
         }
         dir=(dir+1)%2;
        }
+       levelNum.innerHTML="Level "+(level+1);
+       levelDetails.innerHTML=`Your Password contains the use of followings : - Alphabets only. It is not secure.`
        return ans;
 
     }
@@ -79,6 +87,8 @@ function encryptFun(password)
         }
         dir=(dir+1)%2;
        }
+       levelNum.innerHTML="Level "+(level+1);
+       levelDetails.innerHTML=`Your Password contains the use of followings : - Alphabets and Numbers. It is secure.`
        return ans;
         
     }
@@ -106,6 +116,8 @@ function encryptFun(password)
         }
         dir=(dir+1)%2;
        }
+       levelNum.innerHTML="Level "+(level+1);
+       levelDetails.innerHTML=`Your Password contains the use of followings : - Alphabets, Numbers and Symbols. It is very secure.`
        return ans;
         
     }
@@ -118,3 +130,4 @@ function randomSymbol()
     return symbols[idx];
 }
 randomSymbol();
+
