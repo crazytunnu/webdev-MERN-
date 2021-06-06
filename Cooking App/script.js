@@ -101,7 +101,7 @@ function encryptFun(password)
         else{
             ans=ch+ans;
             ans=Math.floor(Math.random() * 10)+ans;
-            ans=randonSymbol+ans;
+            ans=randomSymbol()+ans;
             ans=extra+ans;
         }
         dir=(dir+1)%2;
