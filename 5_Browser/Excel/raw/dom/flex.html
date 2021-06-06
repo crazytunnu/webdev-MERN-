@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: chartreuse;
+        }
+        .btn{
+            position: fixed;
+            top: 10px;
+            left: 45vw;
+        }
+        .items{
+            background-color: red;
+            width: 250px;
+            height:fit-content;
+            margin: 10px;
+        }
+        .txt{
+            display: none;
+        }
+        .container{
+            position: fixed;
+            top:5vh;
+            width: 100vw;
+            height: 95vh;
+            background-color: pink;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">Click</button>
+    <div class="txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quod delectus ea obcaecati reprehenderit optio eius voluptatum tenetur ut vel assumenda doloremque ex itaque accusamus, expedita quia voluptates sunt nihil tempora inventore dolorum minus minima! Illum eos nesciunt nemo quam, eaque praesentium doloribus, odit animi et necessitatibus, ducimus eum vel?</div>
+    <div class="container"></div>
+    <script>
+        let txt=document.querySelector(".txt");
+        let btn=document.querySelector(".btn");
+        let container=document.querySelector(".container");
+        btn.addEventListener("click",function(){
+            let div=document.createElement("div");
+            div.setAttribute("class","items");
+            div.innerHTML=txt.innerHTML
+            container.appendChild(div);
+        })
+    </script>
+</body>
+</html>

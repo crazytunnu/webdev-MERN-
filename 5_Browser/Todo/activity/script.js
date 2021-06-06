@@ -119,8 +119,9 @@ tb.addEventListener("click",function(data){
     tb.addEventListener("keydown",function(data){
         if(data.key=="Enter")
         {
-            let uifn = new ShortUniqueId();
-    let uid = uifn();
+    //         let uifn = new ShortUniqueId();
+    // let uid = uifn();
+    let uid="djsldsa";
         let nb=document.createElement("div");
     nb.setAttribute("class","todo");
     nb.innerHTML=`<div class="td-head"></div>
