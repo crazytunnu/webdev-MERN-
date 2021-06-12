@@ -10,11 +10,14 @@
     <input type="text" value="data" id="txt">
     <input type="text" value="1" id="version">
     <button id="create">CreateDB</button>
+    <button id='addnotes'>Add Notes</button>
     <script>
         let create=document.getElementById('create');
+        let addNotes=document.getElementById('addnotes')
         create.addEventListener('click',function(e){
             createDB();
         })
+        let db;
         function createDB()
         {
             let name=document.getElementById('txt').value;
@@ -23,15 +26,30 @@
             req.onupgradeneeded=function(e)
             {
                 alert("upgrade");
+                let db=req.result;
+                db.createObjectStore('notes',{keyPath:'nId'});
+
             }
             req.onsuccess=function (e){
                 alert("success");
+                db=req.result;
             }
             req.onerror=function(e){
                 alert(e.target.value);
             }
 
         }
+        addNotes.addEventListener('click',function(e)
+        {
+            console.log("dfljlsd");
+            let tx=db.transaction('notes','readwrite');
+            let noteStore=tx.objectStore('notes');
+            let obj={
+                nId:'kjshks',
+                fname:'Arshad'
+            }
+            noteStore.add(obj);
+        })
     </script>
 </body>
 </html>
