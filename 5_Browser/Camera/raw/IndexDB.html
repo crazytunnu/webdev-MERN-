@@ -11,12 +11,17 @@
     <input type="text" value="1" id="version">
     <button id="create">CreateDB</button>
     <button id='addnotes'>Add Notes</button>
+    <button class="date">Time</button>
     <script>
         let create=document.getElementById('create');
         let addNotes=document.getElementById('addnotes')
         create.addEventListener('click',function(e){
             createDB();
         })
+        let date=document.querySelector(".date");
+        date.addEventListener("click",function(){
+            console.log(Date.now())
+;        })
         let db;
         function createDB()
         {
