@@ -26,7 +26,7 @@ for(let i=0;i<allfilters.length;i++)
         }
     })
 }
-console.log(allfilters.length)
+// console.log(allfilters.length)
 let constraints={
     video:true,
     audio : true
@@ -44,10 +44,11 @@ navigator.mediaDevices.getUserMedia(constraints)
     rec.addEventListener("stop",function(x){
         let a=document.createElement("a");
         let blob=new Blob(buffer,{type:"video/mp4"});
-        let url=window.URL.createObjectURL(blob);
-        a.download="Video.mp4";
-        a.href=url;
-        a.click();
+        // let url=window.URL.createObjectURL(blob);
+        // a.download="Video.mp4";
+        // a.href=url;
+        // a.click();
+        SavetoGallery('video',blob);
     })
     
 }).catch(function(err){
@@ -102,11 +103,12 @@ capture_btn.addEventListener("click",function(e){
         tool.fillRect(0,0,canvas.width,canvas.height)
     }
     let url=canvas.toDataURL();
-    let a=document.createElement("a");
-    a.href=url;
-    a.download="file.png";
-    a.click();
-    a.remove();
+    SavetoGallery('img',url);
+    // let a=document.createElement("a");
+    // a.href=url;
+    // a.download="file.png";
+    // a.click();
+    // a.remove();
     canvas.remove();
     setTimeout(function(){white.classList.remove("cpature-animation");},100)
 })   

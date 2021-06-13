@@ -7,6 +7,69 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <input type="text" value="data" id="txt">
+    <input type="text" value="1" id="version">
+    <button id="create">CreateDB</button>
+    <button id='addnotes'>Add Notes</button>
+    <script>
+        let create=document.getElementById('create');
+        let addNotes=document.getElementById('addnotes')
+        create.addEventListener('click',function(e){
+            createDB();
+        })
+        let db;
+        function createDB()
+        {
+            let name=document.getElementById('txt').value;
+            let version=document.getElementById('version').value;
+            let req=indexedDB.open(name,version)
+            req.onupgradeneeded=function(e)
+            {
+                alert("upgrade");
+                let db=req.result;
+                db.createObjectStore('notes',{keyPath:'nId'});
+
+            }
+            req.onsuccess=function (e){
+                alert("success");
+                db=req.result;
+                viewNotes();
+            }
+            req.onerror=function(e){
+                alert(e.target.value);
+            }
+
+        }
+        addNotes.addEventListener('click',function(e)
+        {
+            console.log("dfljlsd");
+            let tx=db.transaction('notes','readwrite');
+            let noteStore=tx.objectStore('notes');
+            let obj={
+                nId:'kjshks',
+                fname:'Arshad'
+            }
+            let obj2={
+                nId:'kjssshks',
+                fname:'Hussain'
+            }
+            noteStore.add(obj);
+            noteStore.add(obj2);
+        })
+        function viewNotes()
+        {
+            let tx=db.transaction('notes','readonly');
+            let store=tx.objectStore('notes');
+            let request=store.openCursor();
+            request.onsuccess=function (){
+                let cursor=request.result;
+                if(cursor)
+                {
+                    console.log(cursor.value);
+                    cursor.continue();
+                }
+            }
+        }
+    </script>
 </body>
 </html>
