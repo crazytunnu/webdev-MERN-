@@ -33,6 +33,7 @@
             req.onsuccess=function (e){
                 alert("success");
                 db=req.result;
+                viewNotes();
             }
             req.onerror=function(e){
                 alert(e.target.value);
@@ -48,8 +49,27 @@
                 nId:'kjshks',
                 fname:'Arshad'
             }
+            let obj2={
+                nId:'kjssshks',
+                fname:'Hussain'
+            }
             noteStore.add(obj);
+            noteStore.add(obj2);
         })
+        function viewNotes()
+        {
+            let tx=db.transaction('notes','readonly');
+            let store=tx.objectStore('notes');
+            let request=store.openCursor();
+            request.onsuccess=function (){
+                let cursor=request.result;
+                if(cursor)
+                {
+                    console.log(cursor.value);
+                    cursor.continue();
+                }
+            }
+        }
     </script>
 </body>
 </html>
