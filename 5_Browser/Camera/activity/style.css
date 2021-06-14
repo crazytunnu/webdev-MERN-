@@ -167,3 +167,10 @@ body{
 .z4{
     transform: scale(1.8);
 }
+.gallery-btn{
+    position: fixed;
+    color:red;
+    bottom: 10vh;
+    right: 8vw;
+    font-size: 2rem;
+}

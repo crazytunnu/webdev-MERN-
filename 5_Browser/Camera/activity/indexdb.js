@@ -101,3 +101,7 @@ function downloadFun(e)
     a.remove();
 
 }
+let backbtn=document.querySelector('.backToCam');
+backbtn.addEventListener("click",function(){
+    location.assign('index.html')
+})
