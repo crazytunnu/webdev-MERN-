@@ -1,3 +1,4 @@
+
 let video=document.querySelector("video");
 let record=document.querySelector(".record-btn");
 let click=document.querySelector(".click");
@@ -7,6 +8,7 @@ let allfilters=document.querySelectorAll(".filter");
 let uiFilter=document.querySelector(".ui-filter");
 let plusBtn=document.querySelector(".plus")
 let minusBtn=document.querySelector(".minus")
+let galleryBtn=document.querySelector(".gallery-btn");
 let curFilter="";
 let scale=0;
 for(let i=0;i<allfilters.length;i++)
@@ -153,4 +155,10 @@ minusBtn.addEventListener("click",function(){
         str="z"+scale;
         video.classList.add(str);
     }
+})
+
+
+galleryBtn.addEventListener("click",function(e)
+{
+    location.assign("indexedDB.html");
 })

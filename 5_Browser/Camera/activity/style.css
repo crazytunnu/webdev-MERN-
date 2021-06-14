@@ -170,7 +170,7 @@ body{
 .gallery-btn{
     position: fixed;
     color:red;
-    bottom: 10vh;
+    bottom: 15vh;
     right: 8vw;
     font-size: 2rem;
 }

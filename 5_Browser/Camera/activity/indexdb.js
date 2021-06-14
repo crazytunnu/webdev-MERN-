@@ -39,7 +39,7 @@ function ViewData()
                 download.setAttribute('id',"gallery-download");
                 download.innerText="Download";
                 let del=document.createElement('button');
-                del.setAttribute('id',"gallery-download");
+                del.setAttribute('id',"gallery-delete");
                 del.innerText='Delete';
                 let video=document.createElement('video');
                 video.src=URL.createObjectURL(cursor.value.media);
@@ -60,7 +60,7 @@ function ViewData()
                 download.setAttribute('id',"gallery-download");
                 download.innerText="Download";
                 let del=document.createElement('button');
-                del.setAttribute('id',"gallery-download");
+                del.setAttribute('id',"gallery-delete");
                 del.innerText='Delete';
                 let img=document.createElement('img');
                 img.src=cursor.value.media
