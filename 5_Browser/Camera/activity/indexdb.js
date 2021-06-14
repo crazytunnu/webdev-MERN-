@@ -1,6 +1,3 @@
-// const { del } = require("request");
-
-
 let db;
 let req=indexedDB.open('camera',1);
 req.onupgradeneeded=function (e)
@@ -53,6 +50,7 @@ function ViewData()
                 video.autoplay=true;
                 body.appendChild(vidC);
                 del.addEventListener("click",function(e){delFun(e)});
+                download.addEventListener("click",function(e){downloadFun(e)});
             }
             else{
                 let imgC=document.createElement('div');
@@ -71,6 +69,7 @@ function ViewData()
                 imgC.appendChild(del);
                 body.appendChild(imgC);
                 del.addEventListener("click",function(e){delFun(e)});
+                download.addEventListener("click",function(e){downloadFun(e)});
             }
         }
         cursor.continue();
@@ -87,4 +86,18 @@ function delFun(e)
     let mId=e.currentTarget.parentNode.getAttribute('mId');
     e.currentTarget.parentNode.remove();
     DeleteFromDB(mId);
+}
+function downloadFun(e)
+{
+    let imgUrl=e.currentTarget.parentNode.children[0];
+    console.log(imgUrl);
+    let a=document.createElement('a');
+    a.href=imgUrl.src;
+    if(e.currentTarget.parentNode.getAttribute('class')=='gallery-img-container')
+    a.download="File.png"
+    else
+    a.download="File.mp4";
+    a.click();
+    a.remove();
+
 }
