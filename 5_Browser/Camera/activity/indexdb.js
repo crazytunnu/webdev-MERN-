@@ -1,3 +1,4 @@
+// const { del } = require("request");
 
 
 let db;
@@ -37,10 +38,10 @@ function ViewData()
                 let vidC=document.createElement('div');
                 vidC.setAttribute('mId',cursor.value.mId);
                 vidC.classList.add("gallery-vid-container");
-                let download=document.createElement('div');
+                let download=document.createElement('button');
                 download.setAttribute('id',"gallery-download");
                 download.innerText="Download";
-                let del=document.createElement('div');
+                let del=document.createElement('button');
                 del.setAttribute('id',"gallery-download");
                 del.innerText='Delete';
                 let video=document.createElement('video');
@@ -51,15 +52,16 @@ function ViewData()
                 video.controls=true;
                 video.autoplay=true;
                 body.appendChild(vidC);
+                del.addEventListener("click",function(e){delFun(e)});
             }
             else{
                 let imgC=document.createElement('div');
                 imgC.setAttribute('mId',cursor.value.mId);
                 imgC.classList.add("gallery-img-container");
-                let download=document.createElement('div');
+                let download=document.createElement('button');
                 download.setAttribute('id',"gallery-download");
                 download.innerText="Download";
-                let del=document.createElement('div');
+                let del=document.createElement('button');
                 del.setAttribute('id',"gallery-download");
                 del.innerText='Delete';
                 let img=document.createElement('img');
@@ -68,9 +70,21 @@ function ViewData()
                 imgC.appendChild(download);
                 imgC.appendChild(del);
                 body.appendChild(imgC);
-
+                del.addEventListener("click",function(e){delFun(e)});
             }
         }
         cursor.continue();
     }
+}
+function DeleteFromDB(mId)
+{
+    let tx=db.transaction('gallery','readwrite');
+    let store=tx.objectStore('gallery');
+    store.delete(Number(mId));
+}
+function delFun(e)
+{
+    let mId=e.currentTarget.parentNode.getAttribute('mId');
+    e.currentTarget.parentNode.remove();
+    DeleteFromDB(mId);
 }
