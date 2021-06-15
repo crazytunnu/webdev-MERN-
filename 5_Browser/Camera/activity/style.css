@@ -173,4 +173,5 @@ body{
     bottom: 15vh;
     right: 8vw;
     font-size: 2rem;
+    z-index: 7;
 }
