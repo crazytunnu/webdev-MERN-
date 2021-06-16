@@ -1,4 +1,4 @@
-let message=["Hello","I","am","Arshad"];
+let message=["Hello","I","am","Arshad"];//////////////////////////Order of arr matters;
 // let greet=message[0];
 // let name=message[3];
 // let verb=message[2];
@@ -17,6 +17,7 @@ let message=["Hello","I","am","Arshad"];
 // using more than elemets in array;
 // let arr=["Arshad","22"];
 // let [fname,age,address]=arr;
+// let [fname="Default Name",age="Default age",address="Default Value"]=arr;       if arr has specified element then it will replace the default value;
 // here address is on extra index therefore it is assigned undefined
 // console.log(fname,age,address);
 //fname=Arshad
@@ -31,3 +32,6 @@ let message=["Hello","I","am","Arshad"];
 // //swap it
 // [a,b]=[b,a];
 // console.log(a,b);
+
+
+
