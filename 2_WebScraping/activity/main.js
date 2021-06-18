@@ -6,7 +6,7 @@ let pdf=require("pdfkit")
 
 let link="https://github.com/topics";
 request(link,cb)
-function cb(x,y,z)
+function cb(x,y,z)//error,response,html;
 {
     let aa=cheerio.load(z);
     let bb=aa(".container-lg.p-responsive.mt-6 a.no-underline.d-flex.flex-column.flex-justify-center")
