@@ -22,3 +22,5 @@ let person={name:'Arshad',age:"22",job:'SWE'}
 /////////////////////////////////////////////DEfault Value/////////////////////////////////////////
 let{name,xyz="Default",age="100"}=person;//not undefined in this case
 console.log(name,xyz,age);
+
+
