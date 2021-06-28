@@ -12,14 +12,32 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-    function Hello()
+    function Hello({person="Default",age="NA"})
     {
-        return (<div>
-            <h1>Hello World!</h1>
-            </div>
+        console.log(person,age);
+        return (
+            <React.Fragment>
+                <div>
+                <h1>Hello World!{person}{age}</h1>
+                <h2>We are learning React Today</h2>
+                </div>
+            </React.Fragment>
             )
     }
-    ReactDOM.render(<Hello></Hello>,document.getElementById("root"));
+    function Hellos()
+    {
+        return(
+            <React.Fragment>
+            <div>
+                <Hello person="Arshad" age="22"/>
+                <Hello person="Hussain"/>
+                <Hello />
+                <Hello/>
+            </div>
+            </React.Fragment>
+        )
+    }
+    ReactDOM.render(<Hellos></Hellos>,document.getElementById("root"));
     </script>
 </body>
 </html>
