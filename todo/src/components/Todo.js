@@ -21,6 +21,12 @@ export default class Todo extends Component {
             currTask:""
         })
     }
+    onDelete=(id)=>{
+        let ns=this.state.tasks.filter(obj=>{
+            return obj.id!=id
+        })
+        this.setState({tasks:ns});
+    }
     render() {
         // console.log("rendered");
         return (
@@ -33,9 +39,9 @@ export default class Todo extends Component {
                 <ul>
                     {
                         this.state.tasks.map(task=>(
-                            <li>
+                            <li key={task.id}>
                                 <h1>{task.txt}</h1>
-                                <button>Delete</button>
+                                <button onClick={()=>this.onDelete(task.id)}>Delete</button>
                             </li>
                         ))
                     }
