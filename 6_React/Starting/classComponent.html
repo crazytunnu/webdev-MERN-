@@ -24,6 +24,10 @@
         {
             this.setState({count:this.state.count+1})
         }
+        decrement=()=>
+        {
+            this.setState({count:this.state.count-1})
+        }
         render()
         {
             // console.log(this.prop);
@@ -31,6 +35,7 @@
                 <React.Fragment>
                     <h1>{this.state.count}</h1>
                     <button onClick={this.increment}>+</button>
+                    <button onClick={this.decrement}>-</button>
                 </React.Fragment>
             )
         }
