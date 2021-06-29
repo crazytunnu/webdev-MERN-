@@ -41,8 +41,17 @@
         }
 
     }
-    
-    ReactDOM.render(<Counter name="Arshad"/>,document.getElementById("root"));
+    function Counters(prop)
+    {
+        return(
+            <React.Fragment>
+                <Counter/>
+                <Counter/>
+            </React.Fragment>
+
+        )
+    }
+    ReactDOM.render(<Counters name="Arshad"/>,document.getElementById("root"));
 
 
 </script>
