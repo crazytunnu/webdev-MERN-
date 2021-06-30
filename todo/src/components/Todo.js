@@ -30,8 +30,8 @@ export default class Todo extends Component {
     render() {
         // console.log("rendered");
         return (
-            <div>
-                <div className="input-container">
+            <div >
+                <div className="input-container" >
                 <input onChange={this.handleChange} value={this.state.currTask} type='text'></input>
                 <button onClick={this.handleClick}>Add</button>
                 </div>
