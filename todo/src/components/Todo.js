@@ -13,9 +13,9 @@ export default class Todo extends Component {
         let val=e.target.value;
         this.setState({currTask:val})
     }
-    handleClick=()=>
+    handleClick=(text)=>
     {
-        let na=[...this.state.tasks,{id:this.state.tasks.length+1,txt:this.state.currTask}];
+        let na=[...this.state.tasks,{id:this.state.tasks.length+1,txt:text}];
         this.setState({
             tasks:na,
             currTask:""
@@ -43,12 +43,19 @@ class InputComponents extends Component {
     constructor(props)
     {
         super(props);
+       this.state={
+           currTask:""
+       }
+    }
+    handleChange=(e)=>
+    {
+        this.setState({currTask:e.target.value});
     }
     render() {
         return (
             <div className="input-container" >
-                <input onChange={this.props.handleChange} value={this.props.currTask} type='text'></input>
-                <button onClick={this.props.handleClick}>Add</button>
+                <input onChange={this.handleChange} value={this.state.currTask} type='text'></input>
+                <button onClick={()=>{this.props.handleClick(this.state.currTask) ;this.setState({currTask:""})}}>Add</button>
             </div>
         )
     }
