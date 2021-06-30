@@ -30,24 +30,50 @@ export default class Todo extends Component {
     render() {
         // console.log("rendered");
         return (
-            <div >
-                <div className="input-container" >
-                <input onChange={this.handleChange} value={this.state.currTask} type='text'></input>
-                <button onClick={this.handleClick}>Add</button>
-                </div>
+            <>
+            <InputComponents currTask={this.state.currTask} handleChange={this.handleChange} handleClick={this.handleClick}/>
+            <ListComponents tasks={this.state.tasks} onDelete={this.onDelete} />
+            </>
+        )
+    }
+}
+
+
+class InputComponents extends Component {
+    constructor(props)
+    {
+        super(props);
+    }
+    render() {
+        return (
+            <div className="input-container" >
+                <input onChange={this.props.handleChange} value={this.props.currTask} type='text'></input>
+                <button onClick={this.props.handleClick}>Add</button>
+            </div>
+        )
+    }
+}
+
+class ListComponents extends Component {
+    constructor()
+    {
+        super();
+    }
+    render() {
+        return (
             <div className="class-list">
                 <ul>
                     {
-                        this.state.tasks.map(task=>(
+                        this.props.tasks.map(task=>(
                             <li key={task.id}>
                                 <h1>{task.txt}</h1>
-                                <button onClick={()=>this.onDelete(task.id)}>Delete</button>
+                                <button onClick={()=>this.props.onDelete(task.id)}>Delete</button>
                             </li>
                         ))
                     }
                 </ul>
             </div>
-            </div>
         )
     }
 }
+
