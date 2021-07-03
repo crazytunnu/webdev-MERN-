@@ -7,6 +7,13 @@ export default class Movies extends Component {
             arr:funName()
         }
     }
+    onDelete=(id)=>{
+        let narr=this.state.arr.filter(obj=>{
+            return id!=obj._id
+            console.log(id);
+        })
+        this.setState({arr:narr});
+    }
     render() {
         let arr=this.state.arr;
         return (
@@ -18,7 +25,7 @@ export default class Movies extends Component {
                             <span>{obj.genre.name}</span>
                             <span>{obj.numberInStock}</span>
                             <span>{obj.dailyRentalRate}</span>
-                            <button>delete</button>
+                            <button onClick={()=>this.onDelete(obj._id)}>delete</button>
                         </div>
                     ))
                 }
