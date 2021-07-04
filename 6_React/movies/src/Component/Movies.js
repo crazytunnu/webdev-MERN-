@@ -5,16 +5,15 @@ export default class Movies extends Component {
         super(props);
         this.state={
             arr:funName(),
-            oarr:funName(),
             currText:""
         }
     }
     handleChange=(e)=>{
       this.setState({currText:e.target.value})
-      let narr=this.state.oarr.filter(obj=>{
-        return (e.target.value==""||obj.title.toLowerCase().includes(e.target.value.toLowerCase()))
-    })
-    this.setState({arr:narr});
+    //   let narr=this.state.oarr.filter(obj=>{
+    //     return (e.target.value==""||obj.title.toLowerCase().includes(e.target.value.toLowerCase()))
+    // })
+    // this.setState({arr:narr});
     }
     onDelete=(id)=>{
         let narr=this.state.arr.filter(obj=>{
@@ -24,7 +23,16 @@ export default class Movies extends Component {
         this.setState({arr:narr});
     }
     render() {
-        let arr=this.state.arr;
+        let {arr,currText}=this.state;
+        let filterArr=[];
+        if(currText!="")
+        {
+          filterArr=arr.filter(obj=>{
+            return obj.title.toLowerCase().includes(currText.toLowerCase())
+          })
+        }
+        else
+        filterArr=arr;
         return (
             <div className="row">
                 <div className='col-3'><h1>Hello</h1></div>
@@ -42,7 +50,7 @@ export default class Movies extends Component {
         </thead>        
         <tbody>
             {
-                arr.map(obj=>(
+                filterArr.map(obj=>(
                     <tr scope="row" key={obj._id}>
                         <td></td>
                         <td>{obj.title}</td>
