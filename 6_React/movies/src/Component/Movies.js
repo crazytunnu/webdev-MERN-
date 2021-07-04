@@ -4,8 +4,17 @@ export default class Movies extends Component {
     constructor(props){
         super(props);
         this.state={
-            arr:funName()
+            arr:funName(),
+            oarr:funName(),
+            currText:""
         }
+    }
+    handleChange=(e)=>{
+      this.setState({currText:e.target.value})
+      let narr=this.state.oarr.filter(obj=>{
+        return (e.target.value==""||obj.title.toLowerCase().includes(e.target.value.toLowerCase()))
+    })
+    this.setState({arr:narr});
     }
     onDelete=(id)=>{
         let narr=this.state.arr.filter(obj=>{
@@ -17,40 +26,11 @@ export default class Movies extends Component {
     render() {
         let arr=this.state.arr;
         return (
-            <div className='row'>
-                <div className='col-3'>Hello</div>
-                <div className='col-9'></div>
-                <input type='text'></input>
-                <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-                <table class='table'>
+            <div className="row">
+                <div className='col-3'><h1>Hello</h1></div>
+                <div className='col-9'>
+                <input className="w-25"value={this.state.currText} onChange={this.handleChange} type='text'></input>
+                <table className='table'>
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -68,13 +48,14 @@ export default class Movies extends Component {
                         <td>{obj.title}</td>
                         <td>{obj.genre.name}</td>
                         <td>{obj.numberInStock}</td>
-                        <td>{obj.dialyRentalRate}</td>
-                        <td><button type="button" class="btn btn-danger" onClick={()=>this.onDelete(obj._id)}>Delet</button></td>
+                        <td>{obj.dailyRentalRate}</td>
+                        <td><button type="button" class="btn btn-danger" onClick={()=>this.onDelete(obj._id)}>Delete</button></td>
                     </tr>
                 ))
             }
         </tbody>
         </table>
+        </div>
             </div>
         )
     }
