@@ -6,7 +6,8 @@ export default class Movies extends Component {
         this.state={
             arr:funName(),
             currText:"",
-            limit:4
+            limit:5,
+            currPage:1
         }
     }
     handleChange=(e)=>{
@@ -61,7 +62,7 @@ export default class Movies extends Component {
         this.setState({arr:narr})
     }
     render() {
-        let {arr,currText}=this.state;
+        let {arr,currText,limit,currPage}=this.state;
         let filterArr=[];
         if(currText!="")
         {
@@ -71,12 +72,15 @@ export default class Movies extends Component {
         }
         else
         filterArr=arr;
+        let si=(currPage-1)*limit;
+        let ei=si+limit;
+        filterArr=filterArr.slice(si,ei);
         return (
             <div className="row">
                 <div className='col-3'><h1>Hello</h1></div>
                 <div className='col-9'>
                 <input className="w-25"value={this.state.currText} onChange={this.handleChange} type='text' placeholder="Search Movies"></input>
-                <input className="w-25" value={this.state.limit} min="1" max={this.state.arr.length} type="number" onChange={this.handleChangeNum} ></input>
+                <input className="w-25" value={filterArr.length} min="1" max={this.state.arr.length} type="number" onChange={this.handleChangeNum} ></input>
                 <table className='table'>
         <thead>
             <tr>
