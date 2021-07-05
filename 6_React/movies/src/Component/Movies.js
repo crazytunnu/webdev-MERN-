@@ -22,6 +22,38 @@ export default class Movies extends Component {
         })
         this.setState({arr:narr});
     }
+    sortByStock=(e)=>{
+        let order=e.target.className;
+        let narr=[]
+        if(order=="fas fa-sort-up")
+        {
+            narr=this.state.arr.sort((obj1,obj2)=>{
+                return obj1.numberInStock-obj2.numberInStock;
+            })
+        }
+        else{
+            narr=this.state.arr.sort((obj1,obj2)=>{
+                return obj2.numberInStock-obj1.numberInStock;
+            })
+        }
+        this.setState({arr:narr})
+    }
+    sortByRate=(e)=>{
+        let order=e.target.className;
+        let narr=[]
+        if(order=="fas fa-sort-up")
+        {
+            narr=this.state.arr.sort((obj1,obj2)=>{
+                return obj1.dailyRentalRate-obj2.dailyRentalRate;
+            })
+        }
+        else{
+            narr=this.state.arr.sort((obj1,obj2)=>{
+                return obj2.dailyRentalRate-obj1.dailyRentalRate;
+            })
+        }
+        this.setState({arr:narr})
+    }
     render() {
         let {arr,currText}=this.state;
         let filterArr=[];
@@ -45,13 +77,14 @@ export default class Movies extends Component {
                 <th scope="col">Title</th>
                 <th scope="col">Genre</th>
                 <th scope="col">
+                <i class="fas fa-sort-up" onClick={this.sortByStock}></i>
                   Stock
-                <i class="fas fa-sort-up"></i>
-                  <i class="fas fa-sort-down"></i>
+                  <i class="fas fa-sort-down" onClick={this.sortByStock}></i>
                   </th>
-                <th scope="col">Rate
-                <i class="fas fa-sort-up"></i>
-                  <i class="fas fa-sort-down"></i>
+                <th scope="col">
+                <i class="fas fa-sort-up" onClick={this.sortByRate}></i>
+                  Rate
+                  <i class="fas fa-sort-down" onClick={this.sortByRate}></i>
                   </th>
             </tr>
         </thead>        
