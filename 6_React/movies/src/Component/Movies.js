@@ -5,7 +5,8 @@ export default class Movies extends Component {
         super(props);
         this.state={
             arr:funName(),
-            currText:""
+            currText:"",
+            limit:4
         }
     }
     handleChange=(e)=>{
@@ -14,6 +15,11 @@ export default class Movies extends Component {
     //     return (e.target.value==""||obj.title.toLowerCase().includes(e.target.value.toLowerCase()))
     // })
     // this.setState({arr:narr});
+    }
+    handleChangeNum=(e)=>
+    {
+        let num=Number(e.target.value)
+        this.setState({limit:num})
     }
     onDelete=(id)=>{
         let narr=this.state.arr.filter(obj=>{
@@ -69,7 +75,8 @@ export default class Movies extends Component {
             <div className="row">
                 <div className='col-3'><h1>Hello</h1></div>
                 <div className='col-9'>
-                <input className="w-25"value={this.state.currText} onChange={this.handleChange} type='text'></input>
+                <input className="w-25"value={this.state.currText} onChange={this.handleChange} type='text' placeholder="Search Movies"></input>
+                <input className="w-25" value={this.state.limit} min="1" max={this.state.arr.length} type="number" onChange={this.handleChangeNum} ></input>
                 <table className='table'>
         <thead>
             <tr>
@@ -77,13 +84,13 @@ export default class Movies extends Component {
                 <th scope="col">Title</th>
                 <th scope="col">Genre</th>
                 <th scope="col">
-                <i class="fas fa-sort-up" onClick={this.sortByStock}></i>
                   Stock
+                <i class="fas fa-sort-up" onClick={this.sortByStock}></i>
                   <i class="fas fa-sort-down" onClick={this.sortByStock}></i>
                   </th>
                 <th scope="col">
-                <i class="fas fa-sort-up" onClick={this.sortByRate}></i>
                   Rate
+                <i class="fas fa-sort-up" onClick={this.sortByRate}></i>
                   <i class="fas fa-sort-down" onClick={this.sortByRate}></i>
                   </th>
             </tr>
