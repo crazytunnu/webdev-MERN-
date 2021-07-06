@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import { funName } from './getMovies';
+import axios from "axios";
 export default class Movies extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            arr: funName(),
+            arr: [],
             currText: "",
             limit: 5,
             currPage: 1
         }
     }
     async componentDidMount(){
-        
+        let promise=axios("https://backend-react-movie.herokuapp.com/movies");
+        let data=await promise;
+        this.setState({arr:data.data.movies});
     }
     handleChange = (e) => {
         this.setState({ currText: e.target.value })
@@ -84,6 +87,10 @@ export default class Movies extends Component {
             pageNumberArr.push(i+1);
         }
         return (
+            <>
+            {this.state.arr.length==0?<div class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>:
             <div className="row">
                 <div className='col-3'><h1>Hello</h1></div>
                 <div className='col-9'>
@@ -138,6 +145,8 @@ export default class Movies extends Component {
                     </nav>
                 </div>
             </div>
+        }
+            </>
         )
     }
 }
