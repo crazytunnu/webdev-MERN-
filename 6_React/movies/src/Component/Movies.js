@@ -10,6 +10,9 @@ export default class Movies extends Component {
             currPage: 1
         }
     }
+    async componentDidMount(){
+        
+    }
     handleChange = (e) => {
         this.setState({ currText: e.target.value })
         //   let narr=this.state.oarr.filter(obj=>{
