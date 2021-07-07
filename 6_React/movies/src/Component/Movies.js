@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createFactory } from 'react'
 import { funName } from './getMovies';
 import axios from "axios";
 export default class Movies extends Component {
@@ -75,7 +75,7 @@ export default class Movies extends Component {
         this.setState({ arr: narr })
     }
     render() {
-        let { arr, currText, limit, currPage } = this.state;
+        let { arr, currText, limit, currPage, cGenre,genres } = this.state;
         let filterArr = [];
         if (currText != "") {
             filterArr = arr.filter(obj => {
@@ -83,7 +83,13 @@ export default class Movies extends Component {
             })
         }
         else
-            filterArr = arr;
+        filterArr = arr;
+        if(cGenre!="All Genres")
+        {
+            filterArr=filterArr.filter(function(obj){
+                return obj.genre.name==cGenre;
+            })
+        }
         let si = (currPage - 1) * limit;
         let ei = si + limit;
         let pageNumber = Math.ceil(filterArr.length / limit);
