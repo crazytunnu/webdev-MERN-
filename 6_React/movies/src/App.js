@@ -6,7 +6,9 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <Route path="\" component={home}/>
+    <Route exact path="/" component={home}/>
+    <Route path="/aboutaaaaa" component={about}/>
+    <Route exact path="/movies" component={Movies}/>
     
     
     
