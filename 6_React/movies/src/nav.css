@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+.nav{
+    margin-bottom: 5px;
+    height: 10%;
+    background-color: coral;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo{
+    color: brown;
+}
+.unlist{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.li{
+    color: chartreuse;
+}

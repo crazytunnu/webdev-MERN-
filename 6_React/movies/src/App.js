@@ -1,11 +1,14 @@
 import Movies from './Component/Movies'
 import About from './Component/about'
 import home from './Component/home'
+import Nav from "./nav.js";
+
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
 function App() {
   return (
     <>
     <BrowserRouter>
+    <Nav/>
     <Switch>
     <Route exact path="/" component={home}/>
 
