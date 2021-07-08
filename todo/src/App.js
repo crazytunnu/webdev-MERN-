@@ -1,8 +1,8 @@
-import Todo from './components/Todo';
+import Hooksdemo from './Hooksdemo';
 function App() {
   return (
     <>
-    <Todo/>
+    <Hooksdemo/>
     </>
   );
 }
