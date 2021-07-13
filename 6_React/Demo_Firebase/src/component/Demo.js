@@ -24,13 +24,27 @@ export default function Demo() {
         setEmail("");
         setPass("");
     }
-    const handleLogOut=()=>{
-
+    const handleLogOut=async()=>{
+        {
+            try{
+                setLoad(true)
+        let res=auth.signOut();
+        setUser(null);
+        setLoad(false);
+            }
+            catch(e){
+                setError(e.message)
+                setTimeout(() => {
+                    setError("");
+                }, 2000);
+                setLoad(false);
+            }
+        }
     }
     return (
         <>
         {
-        loading==true?<div>Loading{error}</div>:user==null?
+        loading==true?<div>Loading</div>:user==null?
         <div>
           <label>Email:
               <input value={email} onChange={(e)=>setEmail(e.target.value)}></input>
@@ -39,6 +53,7 @@ export default function Demo() {
               <input value={password} onChange={(e)=>setPass(e.target.value)}></input>
             </label>  
             <button onClick={handleLogin}>Login</button>
+            <div>{error}</div>
         </div>:<div>{user.uid}
         <button onClick={handleLogOut}>LogOut</button>
         </div>
