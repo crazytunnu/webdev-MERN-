@@ -1,12 +1,10 @@
 import React,{useState,useContext} from 'react'
 import ThemeContext from './ThemeContext'
-import Dropdown from './Dropdown'
-import Category from './Category'
-export default function NavBar() {
+export default function Dropdown() {
     const obj=useContext(ThemeContext)
     const navStyle={
         width:'100%',
-        height:'300px',
+        height:'20%',
         backgroundColor:`${obj.Theme=='light'?"grey":"black"}`,
         margin:'10px'
     }
@@ -26,10 +24,8 @@ export default function NavBar() {
     }
     return (
         <div style={navStyle}>
-            <p style={pStyle}>Paragraph</p>
-            <Dropdown/>
-            <Category/>
-            <button onClick={switchTheme}>Toggle Theme</button>
+            <p style={pStyle}>DropDown</p>
+           
         </div>
     )
 }
