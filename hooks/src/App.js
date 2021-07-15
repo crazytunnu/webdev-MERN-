@@ -17,6 +17,7 @@ function App() {
     // <Infinite/>
     // <Uc1/>
     // <Main/>
+    <Central/>
   );
 }
 
