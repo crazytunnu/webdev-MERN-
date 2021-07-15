@@ -11,3 +11,4 @@ firebase.initializeApp(
     appId: "1:668960450659:web:c60dafa017d6f3fe5cf056"
   })
   export default firebase;
+  //https://console.firebase.google.com/project/class-demo-6934a/authentication/users

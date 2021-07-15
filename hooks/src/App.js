@@ -7,6 +7,7 @@ import Infinite from './effect/infinite'
 import E3 from './effect/e3'
 import Uc1 from './cleanUp/uc1'
 import Main from './context/main'
+import Central from './context2/Central'
 function App() {
   return (
     // <Uswo/>
@@ -15,7 +16,7 @@ function App() {
     // <E3/>
     // <Infinite/>
     // <Uc1/>
-    <Main/>
+    // <Main/>
   );
 }
 
