@@ -6,7 +6,7 @@ import Q5 from './components/Q5';
 // import Q6 from './components/Q6';
 // import Q7 from './components/Q7';
 // import Q8 from './components/Q8';
-// import Q9 from './components/Q9';
+import Q9 from './components/Q9';
 // import Q10 from './components/Q10';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     {/* <Q2/> */}
     {/* <Q3/> */}
     {/* <Q4/> */}
-    <Q5/>
+    <Q9/>
     </>
   );
 }
