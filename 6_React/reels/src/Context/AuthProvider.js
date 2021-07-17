@@ -1,4 +1,3 @@
-import { load } from 'cheerio';
 import React,{useState,useContext,useEffect} from 'react'
 import {auth} from '../firebase'
 export const AuthContext =React.createContext();
@@ -30,7 +29,7 @@ function AuthProvider({children})
         currentUser,
         login,
         signup,
-        logout
+        signout
     }
     return (
         <AuthContext.Provide value={value}>
@@ -38,3 +37,4 @@ function AuthProvider({children})
         </AuthContext.Provide>
     )
 }
+export default AuthProvider
