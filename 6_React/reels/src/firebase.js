@@ -16,7 +16,7 @@ export const auth=firebase.auth();//alternate way of exporting this is done to m
  const firestore=firebase.firestore();// initialisation of ......not exporting due to security
  export const database={
      users:firestore.collection('user'),//creating user collection
-     timeStamp:firestore.FieldValue.serverTimestamp.
+     timeStamp:firestore.FieldValue.serverTimestamp
  }
 export const storage=firebase.storage();
 export default firebase

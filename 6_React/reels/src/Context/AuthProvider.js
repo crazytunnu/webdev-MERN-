@@ -1,0 +1,40 @@
+import { load } from 'cheerio';
+import React,{useState,useContext,useEffect} from 'react'
+import {auth} from '../firebase'
+export const AuthContext =React.createContext();
+function AuthProvider({children})
+{
+    const[currentUser,setCurrentUser]=useState();
+    const [loading,setLoad]=useState(true);
+    function signup(email,pass)
+    {
+        return auth.createUserWithEmailAndPassword(email,pass);
+    }
+    function login(email,pass)
+    {
+        return auth.signInWithEmailAndPassword(email,pass);
+    }
+    function signout() {
+        return auth.signOut();
+    }
+    useEffect(() => {
+        const unsubscribe =auth.onAuthStateChanged(user=>{
+            setCurrentUser(user);
+            setLoad(false);
+        })
+        return ()=>{
+            unsubscribe();
+        }
+    }, [])
+    const value={
+        currentUser,
+        login,
+        signup,
+        logout
+    }
+    return (
+        <AuthContext.Provide value={value}>
+            {!loading&&children}
+        </AuthContext.Provide>
+    )
+}
