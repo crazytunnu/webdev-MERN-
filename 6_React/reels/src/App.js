@@ -1,9 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-
+import AuthProvider from './Context/AuthProvider';
+import Signup from './component/Signup';
 function App() {
   return (
-    <h1>Hello</h1>
+    <AuthProvider>
+      <Signup/>
+    </AuthProvider>
   );
 }
 

@@ -32,9 +32,9 @@ function AuthProvider({children})
         signout
     }
     return (
-        <AuthContext.Provide value={value}>
+        <AuthContext.Provider value={value}>
             {!loading&&children}
-        </AuthContext.Provide>
+        </AuthContext.Provider>
     )
 }
 export default AuthProvider

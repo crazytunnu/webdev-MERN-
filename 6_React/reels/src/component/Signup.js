@@ -1,12 +1,19 @@
 import React,{useState,useEffect,useContext} from 'react'
-
+import {AuthContext} from '../Context/AuthProvider'
 export default function Signup() {
     const [email,setEmail]=useState();
     const [pass,setPass]=useState();
-    const [loading,setLoading]=useState();
+    const [loading,setLoading]=useState(false);
     const [name,setName]=useState();
     const [error,setError]=useState();
-    
+    const {signup} =useContext(AuthContext);
+    const handleSubmit=async (e)=>{
+        e.preventDefault();
+            setLoading(true);
+            let res = await signup(email,pass);
+            let uid = res.user.uid;
+            console.log(uid); 
+    }
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -20,14 +27,10 @@ export default function Signup() {
                 </div>
                 <div>
                 <label htmlFor=''>Password</label>
-                    <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                </div>
-                <div>
-                    <label htmlFor='profile'>Profile image</label>
-                    <input type='file' accept='image/*' onChange={handleFileSubmit}></input>
+                    <input type='password' value={pass} onChange={(e)=>setPass(e.target.value)}/>
                 </div>
                 <button type='submit' disabled={loading}>SignUp</button>
             </form>
         </div>
-    )
+    );
 }
