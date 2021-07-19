@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
-import {AuthContext} from '../Context/AuthProvider'
+import {AuthContext} from '../Context/AuthProvider';
 export default function Signup() {
     const [email,setEmail]=useState();
     const [pass,setPass]=useState();
