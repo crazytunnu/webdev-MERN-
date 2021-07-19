@@ -4,6 +4,7 @@ export default function Signup() {
     const [email,setEmail]=useState();
     const [pass,setPass]=useState();
     const [loading,setLoading]=useState(false);
+    
     const [name,setName]=useState();
     const [error,setError]=useState();
     const {signup} =useContext(AuthContext);
