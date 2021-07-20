@@ -1,10 +1,11 @@
 import React,{useState,useEffect,useContext} from 'react'
 import {AuthContext} from '../Context/AuthProvider';
+import {storage} from '../firebase'
 export default function Signup() {
     const [email,setEmail]=useState();
     const [pass,setPass]=useState();
     const [loading,setLoading]=useState(false);
-    
+    const [file,setFile]=useState(null);
     const [name,setName]=useState();
     const [error,setError]=useState();
     const {signup} =useContext(AuthContext);
@@ -14,6 +15,25 @@ export default function Signup() {
             let res = await signup(email,pass);
             let uid = res.user.uid;
             console.log(uid); 
+            const uploadTaskListener=storage.ref(`/user/${uid}/profilePic`).put(file);
+            uploadTaskListener.on('state_changed',progress,error,success);
+            function progress(){
+
+            }
+            function error(e)
+            {
+
+            }
+            async function success()
+            {
+                
+            }
+    }
+    const handleFileSubmit=(e)=>{
+        const file=e.target.files[0];
+        console.log(file);
+        if(file!=null)
+        setFile(file);
     }
     return (
         <div>
@@ -29,6 +49,10 @@ export default function Signup() {
                 <div>
                 <label htmlFor=''>Password</label>
                     <input type='password' value={pass} onChange={(e)=>setPass(e.target.value)}/>
+                </div>
+                <div>
+                    <label>Choose Profile Picture</label>
+                    <input type='file' accept='image/*' onChange={handleFileSubmit}></input>
                 </div>
                 <button type='submit' disabled={loading}>SignUp</button>
             </form>
