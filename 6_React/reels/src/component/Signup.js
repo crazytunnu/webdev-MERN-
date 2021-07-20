@@ -7,7 +7,7 @@ export default function Signup() {
     const [loading,setLoading]=useState(false);
     const [file,setFile]=useState(null);
     const [name,setName]=useState();
-    const [error,setError]=useState();
+    const [error,setError]=useState('');
     const {signup} =useContext(AuthContext);
     const handleSubmit=async (e)=>{
         e.preventDefault();
@@ -17,17 +17,24 @@ export default function Signup() {
             console.log(uid); 
             const uploadTaskListener=storage.ref(`/user/${uid}/profilePic`).put(file);
             uploadTaskListener.on('state_changed',progress,error,success);
-            function progress(){
-
+            function progress(snapshot){
+                const cprogress=(snapshot.bytesTransferred/snapshot.totalBytes)
+                console.log(cprogress);
             }
             function error(e)
             {
-
+                setError(e);
+                setTimeout(()=>{
+                    setError('')
+                },2000)
+                setLoading(false);
             }
             async function success()
             {
-                
+                const ppicLink=await uploadTaskListener.snapshot.ref.getDownloadURL();
+                console.log(ppicLink);
             }
+            setLoading(false);
     }
     const handleFileSubmit=(e)=>{
         const file=e.target.files[0];
