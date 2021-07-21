@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react'
 import {AuthContext} from '../Context/AuthProvider';
-import {storage} from '../firebase'
+import {storage,database} from '../firebase'
 export default function Signup() {
     const [email,setEmail]=useState();
     const [pass,setPass]=useState();
@@ -10,7 +10,8 @@ export default function Signup() {
     const [error,setError]=useState('');
     const {signup} =useContext(AuthContext);
     const handleSubmit=async (e)=>{
-        e.preventDefault();
+        try{
+            e.preventDefault();
             setLoading(true);
             let res = await signup(email,pass);
             let uid = res.user.uid;
@@ -33,8 +34,25 @@ export default function Signup() {
             {
                 const ppicLink=await uploadTaskListener.snapshot.ref.getDownloadURL();
                 console.log(ppicLink);
+                await database.users.doc(uid).set({
+                    username:name,
+                    email:email,
+                    userId:uid,
+                    createdAt:database.timeStamp(),
+                    profileURL:ppicLink,
+                    postIds:[]
+                })
+
             }
             setLoading(false);
+        }
+        catch(e){
+            setError(e);
+                setTimeout(()=>{
+                    setError('')
+                },2000)
+                setLoading(false);
+        }
     }
     const handleFileSubmit=(e)=>{
         const file=e.target.files[0];
@@ -47,7 +65,7 @@ export default function Signup() {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="">UserName</label>
-                    <input type='text' value={name}onChange={(e)=>setName(e.target.valeu)}></input>
+                    <input type='text' value={name}onChange={(e)=>setName(e.target.value)}></input>
                 </div>
                 <div>
                 <label htmlFor=''>Email</label>
