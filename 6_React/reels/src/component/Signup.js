@@ -16,7 +16,7 @@ export default function Signup() {
             let res = await signup(email,pass);
             let uid = res.user.uid;
             console.log(uid); 
-            const uploadTaskListener=storage.ref(`/user/${uid}/profilePic`).put(file);
+            const uploadTaskListener=storage.ref(`/user/${uid}/profilePic`).put(file);//firebase storage and directory creation
             uploadTaskListener.on('state_changed',progress,error,success);
             function progress(snapshot){
                 const cprogress=(snapshot.bytesTransferred/snapshot.totalBytes)
@@ -34,7 +34,7 @@ export default function Signup() {
             {
                 const ppicLink=await uploadTaskListener.snapshot.ref.getDownloadURL();
                 console.log(ppicLink);
-                await database.users.doc(uid).set({
+                await database.users.doc(uid).set({//firebase database creation
                     username:name,
                     email:email,
                     userId:uid,
