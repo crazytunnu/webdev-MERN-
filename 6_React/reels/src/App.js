@@ -6,7 +6,7 @@ import Main from './MaterialUI/main.js'
 function App() {
   return (
     <>
-
+    <Main/>
     </>
   );
 }
