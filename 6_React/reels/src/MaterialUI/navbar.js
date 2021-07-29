@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    color:'black'
+    color:'black',
+    fontFamily:'Cursive'
   },
   czscss:{
       backgroundColor:'white'
