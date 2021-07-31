@@ -12,7 +12,7 @@ function App() {
     // </AuthProvider>
     // <Main/>
     <AuthProvider>
-    <Signup/>
+    {/* <Signup/> */}
     <Login/>
     </AuthProvider>
     // <Main/>
