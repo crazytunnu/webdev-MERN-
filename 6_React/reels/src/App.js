@@ -6,9 +6,16 @@ import Login from './component/Login';
 // import Main from './MaterialUI/main.js'
 function App() {
   return (
+    // <AuthProvider >
+
+    // <Signup/>
+    // </AuthProvider>
+    // <Main/>
     <AuthProvider>
+    <Signup/>
     <Login/>
     </AuthProvider>
+    // <Main/>
   );
 }
 
