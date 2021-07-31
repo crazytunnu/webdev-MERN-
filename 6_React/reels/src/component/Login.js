@@ -1,36 +1,51 @@
-import React,{useState,useContext,useEffect} from 'react'
-import { AuthContext } from '../Context/AuthProvider'
-export default function Login() {
-    const [username,setUser]=useState("");
-    const [password,setPass]=useState("");
-    const {login}=useContext(AuthContext);
-    const [loading,setLoad]=useState(false);
-    let uid;
-    const onSubmit=async ()=>{
-        setLoad(true);
-        try{
-            const res= await login(username,password);
-        uid=res.user.uid;
-        console.log(uid);
+import React,{useState,useContext, useEffect} from 'react'
+import { useHistory } from 'react-router-dom';
+import {AuthContext} from '../Context/AuthProvider';
+function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false);
+    const {login,currentUser} =useContext(AuthContext);
+    const history = useHistory();
+     const handleSubmit = async(e)=>{
+          console.log('hi');
+        e.preventDefault()
+        try {
+          console.log('Logging in user')
+          setLoading(true)
+          await login(email, password)
+          setLoading(false)
+          history.push('/')
+        } catch {
+          setError("Failed to log in")
+          setTimeout(()=>setError(''),2000)
+          setLoading(false)
         }
-        catch(e){
-            console.log(e);
-        }
-        setLoad(false);
-
-    }
-    return (
-        <>
+      }
+      useEffect(()=>{
+        if(currentUser)
         {
-            loading?<h1>Loading</h1>:<>
-                <h1>{uid}</h1>
+          history.push('/')
+        }
+      },[])
+    return (
         <div>
-          <input type='email' onChange={(e)=>setUser(e.target.value)}></input>
-          <input typr='password' onChange={(e)=>setPass(e.target.value)}></input>
-          <button onClick={onSubmit}>Login</button>
+              <form onSubmit={handleSubmit} >
+             <div>
+                <label htmlFor=''>Email</label>
+                    <input type='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                </div>
+                <div>
+                <label htmlFor=''>Password</label>
+                    <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                </div>
+                <button type='submit' disabled={loading}>Login</button>
+                {error?<h1>{error}</h1>:<></>}
+                </form>
+               
         </div>
-        </> 
-        }  
-        </>
     )
 }
+
+export default Login
