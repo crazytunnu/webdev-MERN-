@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
+import { useHistory } from 'react-router-dom';
 import {AuthContext} from '../Context/AuthProvider';
 import {storage,database} from '../firebase'
 export default function Signup() {
@@ -7,8 +8,9 @@ export default function Signup() {
     const [loading,setLoading]=useState(false);
     const [file,setFile]=useState(null);
     const [name,setName]=useState();
+    const history=useHistory();
     const [error,setError]=useState('');
-    const {signup} =useContext(AuthContext);
+    const {signup,currentUser} =useContext(AuthContext);
     const handleSubmit=async (e)=>{
         try{
             e.preventDefault();
@@ -57,9 +59,16 @@ export default function Signup() {
     const handleFileSubmit=(e)=>{
         const file=e.target.files[0];
         console.log(file);
+        history.push('/')
         if(file!=null)
         setFile(file);
     }
+    useEffect(()=>{
+        if(currentUser)
+        {
+          history.push('/')
+        }
+      },[])
     return (
         <div>
             <form onSubmit={handleSubmit}>

@@ -99,7 +99,7 @@ function Login() {
     const {login,currentUser}=useContext(AuthContext);
     const [loading,setLoad]=useState(false);
     const [error,setError]=useState('')
-    const history = useHistory('');
+    const history = useHistory();
     const [uid,setUid]=useState('');
     const handleSubmit=async (e)=>{
         e.preventDefault()
@@ -107,6 +107,7 @@ function Login() {
         try{
             const res= await login(username,password);
         setUid(res.user.uid)
+        history.push('/')
         console.log(res.user.uid);
         }
         catch(e){
@@ -119,6 +120,12 @@ function Login() {
         setLoad(false);
         
     }
+    useEffect(()=>{
+      if(currentUser)
+      {
+        history.push('/')
+      }
+    },[])
     return (
         // <div>
         //       <form onSubmit={handleSubmit} >
