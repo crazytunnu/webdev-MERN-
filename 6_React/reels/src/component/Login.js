@@ -94,34 +94,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Login() {
     const classes = useStyles();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false);
-    const {login,currentUser} =useContext(AuthContext);
-    const history = useHistory();
-     const handleSubmit = async(e)=>{
-          console.log('hi');
-        // e.preventDefault()
-        try {
-          console.log('Logging in user')
-          setLoading(true)
-          const res=await login(email, password)
-          console.log(res.user.uid);
-          setLoading(false)
-          history.push('/')
-        } catch {
-          setError("Failed to log in")
-          setTimeout(()=>setError(''),2000)
-          setLoading(false)
+    const [username,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const {login,currentUser}=useContext(AuthContext);
+    const [loading,setLoad]=useState(false);
+    const [error,setError]=useState('')
+    const history = useHistory('');
+    const [uid,setUid]=useState('');
+    const handleSubmit=async (e)=>{
+        e.preventDefault()
+        setLoad(true);
+        try{
+            const res= await login(username,password);
+        setUid(res.user.uid)
+        console.log(res.user.uid);
         }
-      }
-    //   useEffect(()=>{
-    //     if(currentUser)
-    //     {
-    //       history.push('/')
-    //     }
-    //   },[])
+        catch(e){
+            setError("Login Failed");
+            setTimeout(()=>{
+                setError('');
+            },2000)
+        }
+        // setUid('');
+        setLoad(false);
+        
+    }
     return (
         // <div>
         //       <form onSubmit={handleSubmit} >
