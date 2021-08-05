@@ -47,6 +47,7 @@ export default function Signup() {
 
             }
             setLoading(false);
+            history.push('/');
         }
         catch(e){
             setError(e);
