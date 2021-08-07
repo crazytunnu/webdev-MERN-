@@ -16,6 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
 import ExploreIcon from '@material-ui/icons/Explore';
+import { Avatar } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -80,9 +81,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+export default function Header(props) {
   const classes = useStyles();
-
+  console.log(props.userData);
+  const link=props.userData.profileURL;
   return (
     <div className={classes.grow}>
       <AppBar style={{backgroundColor:'white'}} position="static">
@@ -94,7 +96,8 @@ export default function Header() {
           <div className={classes.sectionDesktop}>
           <HomeIcon style={{color:'black',fontSize:40}} />
           <ExploreIcon style={{color:'black',fontSize:'40'}} />
-          <AccountCircle style={{color:'black',fontSize:'40'}} />
+          <Avatar alt="Travis Howard" src={link} />
+          
           </div>
         </Toolbar>
       </AppBar>
