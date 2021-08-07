@@ -7,13 +7,31 @@ const useStyles = makeStyles((theme) => ({
 
   }));
 
-function UploadFile() {
+function UploadFile(currentUser) {
     const classes = useStyles();
     const[loading,setLoading] = useState(false);
     const[error,setError] = useState(null);
     const types =['video/mp4','video/webm','video/ogg'];
     const onChange=(e)=>{
-
+        const file=e?.target?.files[0];
+        if(!file)
+        {
+            console.log("Please Select a file");
+            setError("error");
+            setTimeout(()=>{setError(null),2000});
+        }
+        if(file.size/(1024*1024)>100)
+        {
+            console.log("Max Size exceed");
+            setError("error");
+            setTimeout(()=>{setError(null),2000});
+        }
+        if(types.indexOf(file.type)==-1)
+        {
+            console.log("Not a video file");
+            setError("error");
+            setTimeout(()=>{setError(null),2000});
+        }
     }
 
     return (
