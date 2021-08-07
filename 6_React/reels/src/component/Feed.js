@@ -4,6 +4,7 @@ import {database} from '../firebase'
 import { CircularProgress } from '@material-ui/core'
 import UploadFile from './UploadFile';
 import Header from './Header'
+
 import './Feed.css'
 export default function Feed() {
     const {currentUser} =useContext(AuthContext);

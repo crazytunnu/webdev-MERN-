@@ -3,11 +3,13 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { storage } from '../firebase';
+import {v4 as uuidv4} from 'uuid'
 const useStyles = makeStyles((theme) => ({
 
   }));
 
-function UploadFile(currentUser) {
+function UploadFile(props) {
     const classes = useStyles();
     const[loading,setLoading] = useState(false);
     const[error,setError] = useState(null);
@@ -18,20 +20,22 @@ function UploadFile(currentUser) {
         {
             console.log("Please Select a file");
             setError("error");
-            setTimeout(()=>{setError(null),2000});
+            setTimeout(()=>{setError(null)},2000);
         }
         if(file.size/(1024*1024)>100)
         {
             console.log("Max Size exceed");
             setError("error");
-            setTimeout(()=>{setError(null),2000});
+            setTimeout(()=>{setError(null)},2000);
         }
         if(types.indexOf(file.type)==-1)
         {
             console.log("Not a video file");
             setError("error");
-            setTimeout(()=>{setError(null),2000});
+            setTimeout(()=>{setError(null)},2000);
         }
+        const id=uuidv4();
+        const onUploadTask=storage.ref(`/posts/${props.userData.userId}/${file.name}`).put(file);
     }
 
     return (
