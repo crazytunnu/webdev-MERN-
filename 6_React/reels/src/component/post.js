@@ -15,6 +15,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { database } from '../firebase';
+import './Video.css'
+import Video from './Video';
 const useStyles = makeStyles({
     root: {
       width: '100%',
@@ -61,6 +63,7 @@ const useStyles = makeStyles({
 
   });
 function Posts(props) {
+  const classes=useStyles();
   const callback=entries=>{
     entries.forEach(e=>{
        let el=e.target.childNodes[0];
@@ -74,7 +77,7 @@ function Posts(props) {
     })
 }
 const observer=new IntersectionObserver(callback,{threshold:0.9})
-  const[post,setPost]=useState();
+  const[posts,setPost]=useState();
 useEffect(() => {
   let arr=[]
   const unsub=database.posts.orderBy("createdAt",'desc').onSnapshot(all=>{
@@ -88,10 +91,40 @@ setPost(arr);
   })
   return unsub;
 },[])
+useEffect(() => {
+  let elements=document.querySelectorAll('.videos');
+  elements.forEach((el)=>{
+    observer.observe(el);
+    
+  })
+  return () => {
+    observer.disconnect();
+  }
+}, [posts])
     return (
-        <div>
-          POST
-        </div>
+      <>
+      <div className='place'>
+      </div>
+      {posts==null?<CircularProgress className={classes.loader} color="secondary" />:
+      <div className='video-container' id='video-container'>
+        {
+          posts.map((post)=>(
+            <React.Fragment key={post.postId}>
+              <div className='videos'>
+                <Video source={post.pUrl} id={post.pId}/>
+                <div className='fa' style={{display:'flex'}}>
+                  <Avatar src={post.uProfile}></Avatar>
+                  <h4>{post.uName}</h4>
+                </div>
+              </div>
+              <div className='place'></div>
+            </React.Fragment>
+          ))
+        }
+
+      </div>
+      }
+      </>
     )
 }
 
