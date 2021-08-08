@@ -98,7 +98,7 @@ function UploadFile(props) {
             <label htmlFor='icon-button-file'>
             <Button disabled={loading} variant="outlined" component='span' className={classes.button} 
             size='medium' color="secondary">
-                Secondary
+                Upload Video
             </Button>
 
             </label>
