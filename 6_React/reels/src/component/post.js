@@ -77,17 +77,18 @@ function Posts(props) {
     })
 }
 const observer=new IntersectionObserver(callback,{threshold:0.9})
-  const[posts,setPost]=useState();
+  const[posts,setPost]=useState(null);
 useEffect(() => {
   let arr=[]
-  const unsub=database.posts.orderBy("createdAt",'desc').onSnapshot(all=>{
+  const unsub=database.posts.orderBy("createdAt",'desc').onSnapshot((all)=>{
     arr=[];
     all.forEach((i)=>{
-      console.log(i.data());
-      const {data}={...i.data(),postIds:i.id}
+      console.log(i.id);
+      let data={...i.data(),postIds:i.id}
+      console.log(data);
       arr.push(data);
     })
-setPost(arr);
+    setPost(arr);
   })
   return unsub;
 },[])
