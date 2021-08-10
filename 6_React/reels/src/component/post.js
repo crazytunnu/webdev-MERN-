@@ -16,7 +16,8 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { database } from '../firebase';
 import './Video.css'
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import Likes from './Likes';
+
 import Video from './Video';
 const useStyles = makeStyles({
     root: {
@@ -118,8 +119,10 @@ useEffect(() => {
                   <Avatar src={post.uProfile}></Avatar>
                   <h4>{post.uName}</h4>
                 </div>
+                <div className='fa' style={{display:'flex',marginLeft:'10px'}}>
+              <Likes userData={userData} userPost={post}/>
+                </div>
               </div>
-              <Like userData={userData} userPost={posts}/>
               <div className='place'></div>
             </React.Fragment>
           ))
