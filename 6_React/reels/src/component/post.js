@@ -16,6 +16,7 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { database } from '../firebase';
 import './Video.css'
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Video from './Video';
 const useStyles = makeStyles({
     root: {
@@ -62,7 +63,7 @@ const useStyles = makeStyles({
     }
 
   });
-function Posts(props) {
+function Posts({userData=null}) {
   const classes=useStyles();
   const callback=entries=>{
     entries.forEach(e=>{
@@ -118,6 +119,7 @@ useEffect(() => {
                   <h4>{post.uName}</h4>
                 </div>
               </div>
+              <Like userData={userData} userPost={posts}/>
               <div className='place'></div>
             </React.Fragment>
           ))
