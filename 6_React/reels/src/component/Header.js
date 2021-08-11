@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import { AuthContext } from '../Context/AuthProvider';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -85,6 +86,24 @@ export default function Header(props) {
   const classes = useStyles();
   console.log(props.userData);
   const link=props.userData.profileURL;
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const {signout}=useContext(AuthContext);
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleLogOut=async ()=>{
+    signout();
+  }
   return (
     <div className={classes.grow}>
       <AppBar style={{backgroundColor:'white'}} position="static">
@@ -96,8 +115,24 @@ export default function Header(props) {
           <div className={classes.sectionDesktop}>
           <HomeIcon style={{color:'black',fontSize:40}} />
           <ExploreIcon style={{color:'black',fontSize:'40'}} />
-          <Avatar alt="Travis Howard" src={link} />
-          
+          <Avatar alt="Travis Howard" src={link} onClick={handleMenu}/>
+          <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleLogOut} >Logout</MenuItem>
+              </Menu>
           </div>
         </Toolbar>
       </AppBar>

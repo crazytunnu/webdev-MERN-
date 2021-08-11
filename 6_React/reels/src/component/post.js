@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Card from '@material-ui/core/Card';
@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 // import Ticker from 'react-ticker';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import './post.css'
+import AuthProvider, { AuthContext } from '../Context/AuthProvider';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogContent from '@material-ui/core/DialogContent';
