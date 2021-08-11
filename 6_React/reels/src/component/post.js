@@ -19,6 +19,7 @@ import { database } from '../firebase';
 import './Video.css'
 import Likes from './Likes';
 import Comments from './Comments';
+import ShowComments from './ShowComments'
 import Video from './Video';
 const useStyles = makeStyles({
     root: {
@@ -156,7 +157,7 @@ useEffect(() => {
                                 <hr style={{ border: "none", height: "1px", color: "#dfe6e9", backgroundColor: "#dfe6e9" }} />
                                 <CardContent className={classes.seeComments}>
                                   
-                                {/* <Comments userData={userData} postData={post} /> */}
+                                <ShowComments userData={userData} postData={post} />
                                 </CardContent>
                                 
                               </Card>
@@ -165,7 +166,7 @@ useEffect(() => {
                                 <Typography className={classes.typo} variant='body2'>Liked By {post.likes.length == 0 ? 'nobody' : ` others`}</Typography>
                                 </div>
                                 {/* <AddComment  userData={userData} postData={post}/>  */}
-                                <Comments  userData={userData} postData={post}/> 
+                                <Comments  userData={userData} userPost={post}/> 
                                 </div>
                             </div>
                           </div>
