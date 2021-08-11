@@ -89,7 +89,7 @@ export default function Signup() {
                     <label>Choose Profile Picture</label>
                     <input type='file' accept='image/*' onChange={handleFileSubmit}></input>
                 </div>
-                <button type='submit' disabled={loading}>Login</button>
+                <button type='submit' onClick={()=>history.push('/login')} disabled={loading}>Login</button>
                 <button type='submit' disabled={loading}>SignUp</button>
             </form>
         </div>
