@@ -43,9 +43,9 @@ export default function Likes({userData=null,userPost=null}) {
         <div>
            {
                like==true?
-               <><FavoriteIcon onClick={handleLike} className={classes.like}/></>
+               <><FavoriteIcon onClick={handleLike} className={`${classes.like} icon-styling`}/></>
                :
-               <><FavoriteIcon onClick={handleLike} className={classes.unlike}/></>
+               <><FavoriteIcon onClick={handleLike} className={`${classes.unlike} icon-styling`}/></>
            } 
         </div>
     )
