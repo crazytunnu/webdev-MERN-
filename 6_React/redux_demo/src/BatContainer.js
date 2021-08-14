@@ -3,6 +3,7 @@ import {buyBat} from './redux/bat/BatAction'
 import {connect} from 'react-redux'
 function BatContainer(props) {
     const [count,setCount]=useState();
+    console.log(props);
     return (
         <div>
             <h1>The Number of Bats left is/are:{props.numofBat} </h1>
