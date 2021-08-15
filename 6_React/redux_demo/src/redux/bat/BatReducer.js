@@ -8,7 +8,7 @@ const BallReducer=(state=initialState,action)=>{
         case BUY_BAT:
             return {...state,numofBat:state.numofBat-action.payload}
             default:
-                return state
+                return state;
     }
 }
 export default BallReducer;
