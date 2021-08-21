@@ -1,6 +1,6 @@
 import initialState from './initialState.json'
 import * as actionTypes from '../actions/actionTypes'
-export default function educationReducer(state=iniitialState.educationSection,action){
+export default function educationReducer(state=initialState.educationSection,action){
     switch(action.type)
     {
         case actionTypes.ADD_EDUCATION:
@@ -8,6 +8,6 @@ export default function educationReducer(state=iniitialState.educationSection,ac
         case actionTypes.UPDATE_EDUCATION:
             return {...action.educationSection}
         default:
-            state;
+           return state;
     }
 }

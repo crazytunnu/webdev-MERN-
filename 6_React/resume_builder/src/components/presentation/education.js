@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { NavLink } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
-import ResumePreview from './resumePreview'
+// import ResumePreview from './resumePreview'
 import {skinCodes, fieldCd} from './../../constants/typeCodes';
 import { connect } from 'react-redux'
 import * as educationActions from '../../actions/educationActions';
@@ -99,6 +99,7 @@ function Education(props) {
   }
 const mapStateToProps=(state)=>{
     return {
+        contactSection:state.contactSection,
         educationSection:state.educationSection,
         document:state.document
     }

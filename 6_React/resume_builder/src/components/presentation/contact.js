@@ -6,7 +6,7 @@ import * as contactActions from '../../actions/contactActions';
 // import { bindActionCreators } from 'redux';
 // import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import ResumePreview from './resumePreview'
+// import ResumePreview from './resumePreview'
 import { connect } from "react-redux";
 
 function Contact(props) {
