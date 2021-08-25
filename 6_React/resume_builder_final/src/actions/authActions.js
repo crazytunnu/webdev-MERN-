@@ -74,6 +74,7 @@ export const register = (userData)=>{
             });
             dispatch(registerSuccess());
         }).catch((err)=>{
+            console.log("Hellllo")
             dispatch(registerFailed(err));
             setTimeout(()=>{
                 dispatch(removeError())
