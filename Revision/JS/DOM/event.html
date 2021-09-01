@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="value">0</div>
+    <div class="parent">
+        <div class="child">
+            <button class='btn'>click</button>
+        </div>
+    </div>
+    <script>
+        let btn=document.querySelector(".btn")
+        let value=document.querySelector(".value")
+        let child=document.querySelector(".child")
+        let parent=document.querySelector(".parent")
+        btn.addEventListener("click",function(){
+            console.log("button");
+            value.innerHTML=(Number(value.innerHTML)+1)
+        })
+        child.addEventListener("click",function(){
+            console.log("child");
+            value.innerHTML=(Number(value.innerHTML)+1)
+        })
+        parent.addEventListener("click",function(){
+            console.log("parent");
+        })
+    </script>
+</body>
+</html>
