@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div div{
+
+            margin-left: 200px;
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>hello p
+        <div>hello c1
+            <div>hello c2</div>
+        </div>
+    </div>
+    <script>
+        let p=document.querySelector(".parent")
+        let c=document.querySelector(".child")
+        let btn=document.querySelector("button")
+        btn.addEventListener("click",function(){
+            console.log("clicked");
+        })
+        c.addEventListener("click",function(e){
+            e.currentTarget.style.backgroundColor="red"
+        })
+        p.addEventListener("click",function(e){
+            e.currentTarget.style.backgroundColor="red"
+        })
+    </script>
+</body>
+</html>
