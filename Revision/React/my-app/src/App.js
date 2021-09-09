@@ -6,7 +6,7 @@ import Message from './component/message.js'
 import Count from './component/count.js'
 import Destructuring from './component/destructuring'
 import Parent from './component/parent';
-
+import Conditional from './component/conditional';
 function App() {
   return (
     // <Reducer/>
@@ -14,8 +14,8 @@ function App() {
     // <Message/>
     // <Count count="2"/>
     // <Destructuring name="Arshad" hero="SpiderMan"/>
-    <Parent name="Arshad" />
-
+    // <Parent name="Arshad" />
+    <Conditional status={false}/>
   );
 }
 
