@@ -21,7 +21,7 @@ class Message extends React.Component{
             <h1>
                 {this.state.message}-{this.state.count}
             </h1>
-            <button onClick={()=>this.handleClick()}>Subscribe</button>
+            <button onClick={this.handleClick}>Subscribe</button>
             </>
 
         )
