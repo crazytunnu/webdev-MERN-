@@ -8,6 +8,7 @@ import Destructuring from './component/destructuring'
 import Parent from './component/parent';
 import Conditional from './component/conditional';
 import Listrenderingparent from './component/listrenderingparent';
+import Styling from './component/20+/Styling'
 function App() {
   return (
     // <Reducer/>
@@ -17,7 +18,9 @@ function App() {
     // <Destructuring name="Arshad" hero="SpiderMan"/>
     // <Parent name="Arshad" />
     // <Conditional status={false}/>
-    <Listrenderingparent/>
+    // <Listrenderingparent/>
+    <Styling style={false}/>
+
   );
 }
 

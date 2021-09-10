@@ -8,14 +8,14 @@ export default function Listrenderingparent() {
         },
         {
             name:"Vishal",
-            age:"22"
+            age:"23"
         }
     ]
 
     return (
         <div>
             {
-                obj.map(x=><Listrenderingchild person={x}/>)
+                obj.map(x=><Listrenderingchild key={x.age} person={x}/>)
             }
         </div>
     )
