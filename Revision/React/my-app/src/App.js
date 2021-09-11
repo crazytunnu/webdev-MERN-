@@ -9,6 +9,9 @@ import Parent from './component/parent';
 import Conditional from './component/conditional';
 import Listrenderingparent from './component/listrenderingparent';
 import Styling from './component/20+/Styling'
+import Inline from './component/20+/Inline'
+import Formhandling from './component/20+/Formhandling'
+import Mounting from './component/20+/Mounting';
 function App() {
   return (
     // <Reducer/>
@@ -19,8 +22,10 @@ function App() {
     // <Parent name="Arshad" />
     // <Conditional status={false}/>
     // <Listrenderingparent/>
-    <Styling style={false}/>
-
+    // <Styling style={false}/>
+    // <Inline/>
+    // <Formhandling/>
+    <Mounting/>
   );
 }
 
