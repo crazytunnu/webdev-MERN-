@@ -13,7 +13,12 @@ export default class Mounting extends Component {
     componentDidMount=()=>{
         console.log("CDM");
     }
-
+    componentDidUpdate=()=>{
+        console.log("CDU");
+    }
+    componentWillUnmount=()=>{
+        console.log("CWU");
+    }
     render() {
         console.log("Render");
         return (

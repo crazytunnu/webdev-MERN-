@@ -12,6 +12,7 @@ import Styling from './component/20+/Styling'
 import Inline from './component/20+/Inline'
 import Formhandling from './component/20+/Formhandling'
 import Mounting from './component/20+/Mounting';
+import ParentComp from './component/20+/parentComp';
 function App() {
   return (
     // <Reducer/>
@@ -25,7 +26,8 @@ function App() {
     // <Styling style={false}/>
     // <Inline/>
     // <Formhandling/>
-    <Mounting/>
+    // <Mounting/>
+    <ParentComp/>
   );
 }
 
