@@ -14,6 +14,7 @@ import Formhandling from './component/20+/Formhandling'
 import Mounting from './component/20+/Mounting';
 import ParentComp from './component/20+/parentComp';
 import PurecompParent from './component/20+/purecompParent';
+import HocUse from './component/30+/HocUse';
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
     // <Formhandling/>
     // <Mounting/>
     // <ParentComp/>
-    <PurecompParent/>
+    // <PurecompParent/>
+    <HocUse/>
   );
 }
 
