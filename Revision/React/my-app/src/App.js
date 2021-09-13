@@ -15,6 +15,9 @@ import Mounting from './component/20+/Mounting';
 import ParentComp from './component/20+/parentComp';
 import PurecompParent from './component/20+/purecompParent';
 import HocUse from './component/30+/HocUse';
+import RenderProps from './component/30+/RenderProps';
+import CounterRENDER from './component/30+/CounterRENDER';
+import CounterUserRENDER from './component/30+/CounterUserRENDER';
 
 function App() {
   return (
@@ -32,7 +35,9 @@ function App() {
     // <Mounting/>
     // <ParentComp/>
     // <PurecompParent/>
-    <HocUse/>
+    // <HocUse/>
+    // <RenderProps name={(login)=>login? "Arshad":"Guest"}/>
+    <CounterRENDER render={(count,increment)=>(<CounterUserRENDER count={count} increment={increment}/>)}/>
   );
 }
 
