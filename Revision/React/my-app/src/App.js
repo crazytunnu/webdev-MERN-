@@ -18,26 +18,30 @@ import HocUse from './component/30+/HocUse';
 import RenderProps from './component/30+/RenderProps';
 import CounterRENDER from './component/30+/CounterRENDER';
 import CounterUserRENDER from './component/30+/CounterUserRENDER';
-
+import CounterUserRENDER2 from './component/30+/CounterUserRENDER2';
+import ContextMain from './component/30+/ContextMain';
 function App() {
-  return (
-    // <Reducer/>
-    // <Game name="Arshad" title="Hussain">ldkfjlsd</Game>
-    // <Message/>
-    // <Count count="2"/>
-    // <Destructuring name="Arshad" hero="SpiderMan"/>
-    // <Parent name="Arshad" />
-    // <Conditional status={false}/>
-    // <Listrenderingparent/>
-    // <Styling style={false}/>
-    // <Inline/>
-    // <Formhandling/>
-    // <Mounting/>
-    // <ParentComp/>
-    // <PurecompParent/>
-    // <HocUse/>
-    // <RenderProps name={(login)=>login? "Arshad":"Guest"}/>
-    <CounterRENDER render={(count,increment)=>(<CounterUserRENDER count={count} increment={increment}/>)}/>
+  return (<>
+    {/* // <Reducer/> */}
+    {/* // <Game name="Arshad" title="Hussain">ldkfjlsd</Game> */}
+    {/* // <Message/> */}
+    {/* // <Count count="2"/> */}
+    {/* // <Destructuring name="Arshad" hero="SpiderMan"/> */}
+    {/* // <Parent name="Arshad" /> */}
+    {/* // <Conditional status={false}/> */}
+    {/* // <Listrenderingparent/> */}
+    {/* // <Styling style={false}/> */}
+    {/* // <Inline/> */}
+    {/* // <Formhandling/> */}
+    {/* // <Mounting/> */}
+    {/* // <ParentComp/> */}
+    {/* // <PurecompParent/> */}
+    {/* // <HocUse/> */}
+    {/* // <RenderProps name={(login)=>login? "Arshad":"Guest"}/> */}
+    {/* <CounterRENDER render={(count,increment)=>(<CounterUserRENDER count={count} increment={increment}/>)}/> */}
+    {/* <CounterRENDER render={(count,increment)=>(<CounterUserRENDER2 count={count} increment={increment}/>)}/> */}
+    <ContextMain/>
+    </>
   );
 }
 
