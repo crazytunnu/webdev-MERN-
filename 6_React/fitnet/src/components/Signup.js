@@ -16,7 +16,7 @@ export default function Signup() {
     }
     async function handleUsername(e){
         await setUsername(e.target.value)
-        setTimeout(validator,2000);
+        setTimeout(validator,200);
         console.log(username);
     }
     const  handlePassword=async (e)=>{
