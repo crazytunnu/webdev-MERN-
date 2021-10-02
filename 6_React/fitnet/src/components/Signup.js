@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import link from './avatar.gif'
 import signuplink from './bgsignup.jpg'
+import hiFytrr from './hiFytrr.jpg'
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -22,7 +23,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        www.fytrr.com
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -33,9 +34,11 @@ function Copyright(props) {
 const theme = createTheme();
 const styles = {
     paperContainer: {
+        height:'100vh',
+        width:'100vw',
         backgroundImage: `url(${signuplink})`,
-        // backgroundSize:'fit',
-        // marginTop:'0px'
+        backgroundSize:'cover',
+        
     }
 };
 export default function SignUp() {
@@ -55,19 +58,20 @@ export default function SignUp() {
     }
 
   return (
-      <div style={styles.paperContainer}>
+      <div style={styles.paperContainer}>  
+       
     <ThemeProvider theme={theme}  >
       <Container component="main" maxWidth="xs" style={{backgroundColor:'white', boxShadow:`5px 3px 5px #9E9E9E`}} >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
-            display: 'flex',
+              heigth:'100vh',
+              display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar style={{height:'12vh',width:'12vw'}} src={link}/>
+          <img style={{height:'15vh',width:'16vw'}} src={link}/>
           <Typography component="h1" variant="h5">
             Sign up for Free
           </Typography>
@@ -147,6 +151,6 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
-    </div>
+ </div>
   );
 }
