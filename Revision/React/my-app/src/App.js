@@ -21,6 +21,7 @@ import CounterUserRENDER from './component/30+/CounterUserRENDER';
 import CounterUserRENDER2 from './component/30+/CounterUserRENDER2';
 import ContextMain from './component/30+/ContextMain';
 import Hooks1 from './component/40+/hooks1';
+import Hooks2 from './component/40+/hooks2';
 function App() {
   return (<>
     {/* // <Reducer/> */}
@@ -42,7 +43,8 @@ function App() {
     {/* <CounterRENDER render={(count,increment)=>(<CounterUserRENDER count={count} increment={increment}/>)}/> */}
     {/* <CounterRENDER render={(count,increment)=>(<CounterUserRENDER2 count={count} increment={increment}/>)}/> */}
     {/* <ContextMain/> */}
-    <Hooks1/>
+    {/* <Hooks1/> */}
+    <Hooks2/>
     </>
   );
 }
