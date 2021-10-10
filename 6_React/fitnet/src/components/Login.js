@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -44,11 +45,8 @@ const styles = {
 export default function Login() {
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
-    const [fname,setFname]=useState("");
-    const [lname,setLname]=useState("");
-    const [agree,setAgree]=useState(true)
     const handleClick=()=>{
-        console.log(username+" "+password+" "+fname+" "+lname)
+        console.log(username+" "+password)
     }
     function handleUsername(e){
         setUsername(e.target.value)
@@ -113,7 +111,7 @@ export default function Login() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup"  variant="body2">
                   Don't have an account? Sign Up
                 </Link>
               </Grid>
