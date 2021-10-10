@@ -41,7 +41,7 @@ const styles = {
         
     }
 };
-export default function SignUp() {
+export default function Login() {
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
     const [fname,setFname]=useState("");
@@ -74,33 +74,10 @@ export default function SignUp() {
         >
           <img style={{height:'15vh',width:'16vw'}} src={link}/>
           <Typography component="h1" variant="h5">
-            Sign up for Free
+            Sign in
           </Typography>
           <Box component="form" noValidate onSubmit={handleClick} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                onChange={(e)=>setFname(e.target.value)}
-                  autoComplete="fname"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                    onChange={(e)=>setLname(e.target.value)}
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                     onChange={handleUsername}
@@ -124,26 +101,20 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails"  onChange={()=>setAgree(!agree)} color="primary" />}
-                  label="I hereby agree to abide by the terms and conditions as provided by Fytrr"
-                />
-              </Grid>
             </Grid>
             <Button
-            onClick={handleClick} disabled={username.length<3||password.length<3||agree||fname.length==0||lname.length==0}
+            onClick={handleClick} disabled={username.length<3||password.length<3}
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign in
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>
